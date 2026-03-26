@@ -200,30 +200,6 @@
   .slide-1 .phase:nth-child(6) { animation: fadeUp 0.35s ease 0.86s both; }
   .slide-1 .phase:nth-child(7) { animation: fadeUp 0.35s ease 0.92s both; }
 
-  /* ── Slide 2: Bio placeholder ── */
-  .slide-2 {
-    display: flex; align-items: center; justify-content: center;
-    background: var(--navy);
-  }
-  .slide-2 .placeholder-card {
-    border: 1px solid rgba(201,168,76,0.25); border-radius: 8px;
-    padding: 60px 80px; text-align: center;
-    background: rgba(255,255,255,0.03);
-  }
-  .slide-2 .placeholder-card .ph-label {
-    font-family: var(--font-body); font-size: 11px; font-weight: 500;
-    letter-spacing: 0.20em; text-transform: uppercase;
-    color: rgba(201,168,76,0.5); margin-bottom: 16px;
-  }
-  .slide-2 .placeholder-card h2 {
-    font-family: var(--font-display); font-size: 32px; font-weight: 700;
-    color: var(--gold); margin-bottom: 8px;
-  }
-  .slide-2 .placeholder-card .ph-sub {
-    font-family: var(--font-body); font-size: 14px; font-weight: 300;
-    color: rgba(255,255,255,0.35);
-  }
-
   /* ── Slide 3: Agenda ── */
   .slide-3 {
     display: flex; flex-direction: column;
@@ -477,13 +453,18 @@
   </div>
 </div>
 
-<!-- Slide 2: Bio placeholder -->
-<div class="slide slide-2" style="display:none;">
-  <div class="placeholder-card">
-    <div class="ph-label">Slide 02</div>
-    <h2>Presenter Bio</h2>
-    <div class="ph-sub">Coming Soon</div>
-  </div>
+<!-- Slide 2: Full-screen LUBM video -->
+<div class="slide" id="slide-2" style="display:none; position:relative; width:100vw; height:100vh; background:#0B1F3A; overflow:hidden;">
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1;"
+  >
+    <source src="/assets/video/slide-2-bg.mp4" type="video/mp4">
+  </video>
 </div>
 
 <!-- Slide 3: Agenda -->

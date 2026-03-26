@@ -4,6 +4,13 @@
   "ignoreCommand": "git diff --quiet HEAD^ HEAD -- index.html assets/",
   "headers": [
     {
+      "source": "/assets/video/(.*\\.mp4)",
+      "headers": [
+        { "key": "Content-Type", "value": "video/mp4" },
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
       "source": "/assets/video/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     },
