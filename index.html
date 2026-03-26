@@ -453,9 +453,11 @@
   </div>
 </div>
 
-<!-- Slide 2: Full-screen LUBM video -->
+<!-- Slide 2: Full-screen LUBM video with controls -->
 <div class="slide" id="slide-2" style="display:none; position:relative; width:100vw; height:100vh; background:#0B1F3A; overflow:hidden;">
+
   <video
+    id="slide2-video"
     autoplay
     muted
     loop
@@ -465,6 +467,113 @@
   >
     <source src="/assets/video/slide-2-bg.mp4" type="video/mp4">
   </video>
+
+  <!-- slide label -->
+  <div style="position:absolute; top:32px; left:48px; z-index:10; font-family:'DM Sans',sans-serif; font-size:10px; font-weight:500; letter-spacing:0.20em; text-transform:uppercase; color:rgba(201,168,76,0.6);">
+    Slide 02 &nbsp;·&nbsp; Presenter
+  </div>
+
+  <!-- MUTED BADGE — centre top, visible by default, hides when unmuted -->
+  <div id="slide2-muted-badge" style="
+    position:absolute; top:32px; left:50%; transform:translateX(-50%);
+    z-index:10; display:flex; align-items:center; gap:8px;
+    background:rgba(11,31,58,0.85); border:1px solid rgba(201,168,76,0.35);
+    border-radius:30px; padding:8px 20px;
+    font-family:'DM Sans',sans-serif; font-size:12px; font-weight:500;
+    letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.7);
+    pointer-events:none;
+  ">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+      <line x1="23" y1="9" x2="17" y2="15"/>
+      <line x1="17" y1="9" x2="23" y2="15"/>
+    </svg>
+    Sound off &nbsp;·&nbsp; Click unmute to hear audio
+  </div>
+
+  <!-- CONTROLS BAR -->
+  <div style="
+    position:absolute; bottom:0; left:0; right:0; z-index:10;
+    padding:28px 48px 36px;
+    display:flex; align-items:center; gap:20px;
+    background:linear-gradient(to top, rgba(11,31,58,0.92) 0%, rgba(11,31,58,0.6) 60%, transparent 100%);
+  ">
+
+    <!-- Play / Pause -->
+    <button id="slide2-btn-play" onclick="slide2TogglePlay()" style="
+      width:72px; height:72px; border-radius:50%;
+      border:2px solid #C9A84C; background:rgba(11,31,58,0.7);
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer; flex-shrink:0; transition:background 0.2s, transform 0.15s;
+    "
+    onmouseover="this.style.background='rgba(201,168,76,0.15)'; this.style.transform='scale(1.06)'"
+    onmouseout="this.style.background='rgba(11,31,58,0.7)'; this.style.transform='scale(1)'"
+    onmousedown="this.style.transform='scale(0.97)'"
+    onmouseup="this.style.transform='scale(1.06)'"
+    >
+      <svg id="slide2-play-icon" width="28" height="28" viewBox="0 0 24 24" fill="#C9A84C" stroke="none">
+        <rect x="6" y="4" width="4" height="16" rx="1"/>
+        <rect x="14" y="4" width="4" height="16" rx="1"/>
+      </svg>
+    </button>
+
+    <!-- Progress bar + time -->
+    <div style="flex:1; display:flex; flex-direction:column; gap:8px;">
+      <div id="slide2-progress-track" onclick="slide2Seek(event)" style="
+        width:100%; height:4px; background:rgba(255,255,255,0.15);
+        border-radius:2px; position:relative; cursor:pointer;
+      ">
+        <div id="slide2-progress-fill" style="
+          width:0%; height:100%; background:#C9A84C;
+          border-radius:2px; position:relative; pointer-events:none;
+          transition:width 0.25s linear;
+        ">
+          <div style="
+            position:absolute; right:-6px; top:50%; transform:translateY(-50%);
+            width:12px; height:12px; border-radius:50%;
+            background:#C9A84C; border:2px solid white;
+          "></div>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:space-between; font-family:'DM Sans',sans-serif; font-size:11px; color:rgba(255,255,255,0.45); letter-spacing:0.05em;">
+        <span id="slide2-time-current">0:00</span>
+        <span id="slide2-time-total">0:00</span>
+      </div>
+    </div>
+
+    <!-- Mute / Unmute -->
+    <button id="slide2-btn-mute" onclick="slide2ToggleMute()" style="
+      width:56px; height:56px; border-radius:50%;
+      border:2px solid rgba(201,168,76,0.5); background:rgba(11,31,58,0.7);
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer; flex-shrink:0; transition:background 0.2s, transform 0.15s; position:relative;
+    "
+    onmouseover="this.style.background='rgba(201,168,76,0.12)'; this.style.borderColor='#C9A84C'; this.style.transform='scale(1.06)'"
+    onmouseout="this.style.background='rgba(11,31,58,0.7)'; this.style.borderColor='rgba(201,168,76,0.5)'; this.style.transform='scale(1)'"
+    >
+      <svg id="slide2-mute-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+        <line x1="23" y1="9" x2="17" y2="15"/>
+        <line x1="17" y1="9" x2="23" y2="15"/>
+      </svg>
+    </button>
+
+    <!-- Fullscreen -->
+    <button onclick="slide2ToggleFullscreen()" style="
+      width:44px; height:44px; border-radius:6px;
+      border:1px solid rgba(255,255,255,0.15); background:rgba(11,31,58,0.5);
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer; flex-shrink:0; transition:border-color 0.2s, background 0.2s;
+    "
+    onmouseover="this.style.borderColor='rgba(201,168,76,0.4)'; this.style.background='rgba(201,168,76,0.08)'"
+    onmouseout="this.style.borderColor='rgba(255,255,255,0.15)'; this.style.background='rgba(11,31,58,0.5)'"
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+      </svg>
+    </button>
+
+  </div>
 </div>
 
 <!-- Slide 3: Agenda -->
@@ -619,6 +728,101 @@
     if (e.key === 'ArrowLeft' || e.key === 'ArrowUp')    { e.preventDefault(); show(current - 1); }
   });
 })();
+
+// ── SLIDE 2 VIDEO CONTROLS ──────────────────────────────────────
+function slide2Init() {
+  const v = document.getElementById('slide2-video');
+  if (!v) return;
+
+  // update progress bar and time as video plays
+  v.addEventListener('timeupdate', function() {
+    if (!v.duration) return;
+    const pct = (v.currentTime / v.duration) * 100;
+    const fill = document.getElementById('slide2-progress-fill');
+    if (fill) fill.style.width = pct + '%';
+
+    const cur = document.getElementById('slide2-time-current');
+    const tot = document.getElementById('slide2-time-total');
+    if (cur) cur.textContent = slide2FormatTime(v.currentTime);
+    if (tot) tot.textContent = slide2FormatTime(v.duration);
+  });
+
+  // reset muted badge and mute state when navigating to slide 2
+  const slide2El = document.getElementById('slide-2');
+  if (slide2El) {
+    const observer = new MutationObserver(function() {
+      const visible = slide2El.style.display !== 'none';
+      if (!visible) {
+        v.muted = true;
+        slide2UpdateMuteUI(true);
+      }
+    });
+    observer.observe(slide2El, { attributes: true, attributeFilter: ['style'] });
+  }
+}
+
+function slide2FormatTime(secs) {
+  if (isNaN(secs)) return '0:00';
+  const m = Math.floor(secs / 60);
+  const s = Math.floor(secs % 60);
+  return m + ':' + String(s).padStart(2, '0');
+}
+
+function slide2TogglePlay() {
+  const v = document.getElementById('slide2-video');
+  const icon = document.getElementById('slide2-play-icon');
+  if (!v || !icon) return;
+  if (v.paused) {
+    v.play();
+    icon.innerHTML = '<rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>';
+  } else {
+    v.pause();
+    icon.innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
+  }
+}
+
+function slide2ToggleMute() {
+  const v = document.getElementById('slide2-video');
+  if (!v) return;
+  v.muted = !v.muted;
+  if (!v.muted) v.volume = 1.0;
+  slide2UpdateMuteUI(v.muted);
+}
+
+function slide2UpdateMuteUI(isMuted) {
+  const icon = document.getElementById('slide2-mute-icon');
+  const badge = document.getElementById('slide2-muted-badge');
+  if (icon) {
+    if (isMuted) {
+      icon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>';
+    } else {
+      icon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>';
+    }
+  }
+  if (badge) badge.style.display = isMuted ? 'flex' : 'none';
+}
+
+function slide2Seek(event) {
+  const v = document.getElementById('slide2-video');
+  const track = document.getElementById('slide2-progress-track');
+  if (!v || !track || !v.duration) return;
+  const rect = track.getBoundingClientRect();
+  const pct = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
+  v.currentTime = pct * v.duration;
+}
+
+function slide2ToggleFullscreen() {
+  const slide = document.getElementById('slide-2');
+  if (!slide) return;
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  } else {
+    slide.requestFullscreen();
+  }
+}
+
+// initialise when DOM is ready
+document.addEventListener('DOMContentLoaded', slide2Init);
 </script>
 </body>
 </html>
