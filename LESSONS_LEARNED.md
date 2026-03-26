@@ -31,3 +31,10 @@
 **Fix:** Call v.play() inside the unmute branch of the click handler, immediately after setting v.muted = false. Wrap in promise .then()/.catch() to handle browsers that still block.
 **Prevention:** Any time you unmute a video programmatically, always call play() in the same synchronous user gesture. Never rely on muted = false alone.
 **Affects:** index.html, LESSONS_LEARNED.md
+
+## 2026-03-27 — Chrome blocks audio even after unmute click on new sites
+**Problem:** Clicking unmute changes icon but no sound plays on new/low-traffic Vercel domain
+**Root Cause:** Chrome's Media Engagement Index (MEI) is zero for new sites. Even with a user click on the unmute button, Chrome still blocks audio on sites with no engagement history. This is a second layer of audio blocking beyond the basic autoplay policy.
+**Fix:** Added a full-screen splash/entry screen. The "Enter Workshop" button click satisfies Chrome's MEI user-gesture requirement for the entire session. All subsequent video audio (including unmute) works correctly after this initial interaction.
+**Prevention:** Every DigitAlchemy® deck with video audio must have a splash entry screen. Never expect audio to work without a full-page initial user interaction. This is the pattern used by YouTube, Netflix, and all major video platforms.
+**Affects:** index.html, LESSONS_LEARNED.md
