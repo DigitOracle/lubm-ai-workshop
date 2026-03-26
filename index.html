@@ -370,6 +370,77 @@
 </style>
 </head>
 <body>
+
+<!-- Splash entry screen — click unlocks Chrome audio MEI for entire session -->
+<div id="splash" style="
+  position:fixed; inset:0; z-index:9999;
+  background:#0B1F3A;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  gap:32px;
+  font-family:'DM Sans',sans-serif;
+">
+  <!-- subtle dot grid -->
+  <div style="
+    position:absolute; inset:0;
+    background-image:radial-gradient(circle, rgba(201,168,76,0.06) 1px, transparent 1px);
+    background-size:40px 40px;
+    pointer-events:none;
+  "></div>
+
+  <!-- gold top stripe -->
+  <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#C9A84C,rgba(201,168,76,0.1));"></div>
+
+  <!-- institution name -->
+  <div style="
+    font-size:11px; font-weight:500; letter-spacing:0.22em;
+    text-transform:uppercase; color:rgba(201,168,76,0.7);
+    position:relative; z-index:1;
+  ">Lincoln University of Business and Management</div>
+
+  <!-- main heading -->
+  <div style="position:relative;z-index:1;text-align:center;">
+    <div style="font-family:'Playfair Display',serif;font-size:52px;font-weight:700;color:#FFFFFF;line-height:1.1;margin-bottom:12px;">
+      Artificial Intelligence<br>Workshop
+    </div>
+    <div style="font-size:15px;font-weight:300;color:rgba(255,255,255,0.45);letter-spacing:0.06em;">
+      Full-Day Staff Development &nbsp;·&nbsp; 09:00 – 17:00
+    </div>
+  </div>
+
+  <!-- enter button — this click unlocks audio for entire session -->
+  <button onclick="enterDeck()" style="
+    position:relative; z-index:1;
+    margin-top:16px;
+    padding:18px 56px;
+    font-family:'DM Sans',sans-serif;
+    font-size:14px; font-weight:500;
+    letter-spacing:0.14em; text-transform:uppercase;
+    color:#0B1F3A;
+    background:#C9A84C;
+    border:none; border-radius:4px;
+    cursor:pointer;
+    transition:background 0.2s, transform 0.15s;
+  "
+  onmouseover="this.style.background='#E8C96A';this.style.transform='scale(1.03)'"
+  onmouseout="this.style.background='#C9A84C';this.style.transform='scale(1)'"
+  onmousedown="this.style.transform='scale(0.98)'"
+  onmouseup="this.style.transform='scale(1.03)'"
+  >
+    Enter Workshop
+  </button>
+
+  <!-- bottom branding -->
+  <div style="
+    position:absolute; bottom:32px;
+    font-size:10px; font-weight:500;
+    letter-spacing:0.12em; text-transform:uppercase;
+    color:rgba(201,168,76,0.3);
+    z-index:1;
+  ">DigitAlchemy®</div>
+
+</div>
+
 <div class="slide slide-1">
   <div class="bg">
     <div class="dot-grid"></div>
@@ -844,6 +915,25 @@ function slide2ToggleFullscreen() {
 
 // initialise when DOM is ready
 document.addEventListener('DOMContentLoaded', slide2Init);
+
+function enterDeck() {
+  // This click satisfies Chrome's Media Engagement Index requirement
+  // and unlocks audio for the entire session
+  const splash = document.getElementById('splash');
+  if (splash) {
+    splash.style.opacity = '0';
+    splash.style.transition = 'opacity 0.5s ease';
+    setTimeout(() => {
+      splash.style.display = 'none';
+      // Now that user has interacted, attempt to play slide 2 video with sound ready
+      const v = document.getElementById('slide2-video');
+      if (v) {
+        v.muted = true; // keep muted until user explicitly unmutes
+        v.play().catch(() => {});
+      }
+    }, 500);
+  }
+}
 </script>
 </body>
 </html>
