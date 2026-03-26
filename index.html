@@ -1,11 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LUBM AI Workshop</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>Lincoln University of Business and Management — Artificial Intelligence Workshop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy:       #0B1F3A;
+    --navy-mid:   #152E52;
+    --navy-light: #1E3D6B;
+    --gold:       #C9A84C;
+    --gold-light: #E8C96A;
+    --gold-pale:  #F7EDD0;
+    --white:      #FFFFFF;
+    --off-white:  #F5F3EE;
+    --mid:        #8A8A80;
+    --dark:       #1A1A18;
+    --font-display: 'Playfair Display', serif;
+    --font-body:    'DM Sans', sans-serif;
+  }
+  html, body {
+    width: 100vw; height: 100vh;
+    overflow: hidden;
+    background: var(--navy);
+    font-family: var(--font-body);
+  }
+  .slide {
+    width: 100vw; height: 100vh;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+  }
+  .bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+  .arc {
+    position: absolute; top: -280px; right: -180px;
+    width: 680px; height: 680px; border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.18);
+  }
+  .arc-2 {
+    position: absolute; top: -160px; right: -60px;
+    width: 440px; height: 440px; border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.10);
+  }
+  .stripe {
+    position: absolute; bottom: 0; left: 0;
+    width: 420px; height: 4px;
+    background: linear-gradient(90deg, var(--gold) 0%, transparent 100%);
+  }
+  .stripe-2 {
+    position: absolute; bottom: 4px; left: 0;
+    width: 220px; height: 1px;
+    background: linear-gradient(90deg, rgba(201,168,76,0.4) 0%, transparent 100%);
+  }
+  .dot-grid {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(201,168,76,0.08) 1px, transparent 1px);
+    background-size: 36px 36px;
+  }
+  .right-bg {
+    position: absolute; top: 0; right: 0;
+    width: 380px; height: 100%;
+    background: rgba(255,255,255,0.04);
+    border-left: 1px solid rgba(201,168,76,0.15);
+  }
+  .left {
+    position: relative; z-index: 1;
+    padding: 56px 60px 48px 72px;
+    display: flex; flex-direction: column;
+    justify-content: space-between;
+  }
+  .institution { display: flex; flex-direction: column; gap: 6px; }
+  .inst-name {
+    font-family: var(--font-body); font-size: 12px; font-weight: 500;
+    letter-spacing: 0.20em; text-transform: uppercase; color: var(--gold);
+  }
+  .inst-sub {
+    font-family: var(--font-body); font-size: 11px; font-weight: 300;
+    letter-spacing: 0.10em; color: rgba(255,255,255,0.35);
+  }
+  .rule { width: 48px; height: 2px; background: var(--gold); margin: 20px 0; }
+  .main { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .event-tag {
+    font-family: var(--font-body); font-size: 11px; font-weight: 400;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4); margin-bottom: 24px;
+  }
+  h1 {
+    font-family: var(--font-display); font-size: 68px; font-weight: 700;
+    line-height: 1.0; letter-spacing: -0.01em; color: var(--white); margin-bottom: 6px;
+  }
+  h1 .accent { color: var(--gold); font-style: italic; }
+  .subtitle {
+    font-family: var(--font-body); font-size: 17px; font-weight: 300;
+    color: rgba(255,255,255,0.55); line-height: 1.6;
+    margin-top: 20px; max-width: 460px;
+  }
+  .subtitle strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+  .stats {
+    display: flex; margin-top: 44px;
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px; overflow: hidden; width: fit-content;
+  }
+  .stat {
+    padding: 14px 28px; display: flex; flex-direction: column; gap: 4px;
+    border-right: 1px solid rgba(201,168,76,0.15);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-n {
+    font-family: var(--font-display); font-size: 30px;
+    font-weight: 600; color: var(--gold); line-height: 1;
+  }
+  .stat-l {
+    font-size: 10px; font-weight: 400; letter-spacing: 0.10em;
+    text-transform: uppercase; color: rgba(255,255,255,0.35);
+  }
+  .bottom { display: flex; align-items: flex-end; justify-content: space-between; }
+  .trainer-block { display: flex; flex-direction: column; gap: 4px; }
+  .trainer-name {
+    font-family: var(--font-display); font-size: 16px;
+    font-weight: 600; color: var(--white); letter-spacing: 0.01em;
+  }
+  .trainer-role { font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.4); letter-spacing: 0.04em; }
+  .da-mark {
+    font-family: var(--font-body); font-size: 11px; font-weight: 500;
+    color: rgba(201,168,76,0.4); letter-spacing: 0.12em;
+    text-transform: uppercase; text-align: right;
+  }
+  .right {
+    position: relative; z-index: 1;
+    padding: 52px 36px 48px 40px;
+    display: flex; flex-direction: column;
+  }
+  .agenda-label {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.20em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 24px; display: flex; align-items: center; gap: 10px;
+  }
+  .agenda-label::after {
+    content: ''; flex: 1; height: 1px; background: rgba(201,168,76,0.25);
+  }
+  .phase-list { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .phase {
+    display: grid; grid-template-columns: 28px 1fr auto;
+    align-items: center; gap: 12px;
+    padding: 12px 14px; border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: border-color 0.2s, background 0.2s; cursor: default;
+  }
+  .phase:hover {
+    border-color: rgba(201,168,76,0.3);
+    background: rgba(201,168,76,0.04);
+  }
+  .ph-num {
+    font-family: var(--font-display); font-size: 11px;
+    font-weight: 600; color: rgba(255,255,255,0.2); text-align: center;
+  }
+  .ph-body { display: flex; flex-direction: column; gap: 2px; }
+  .ph-title { font-size: 12.5px; font-weight: 500; color: rgba(255,255,255,0.8); line-height: 1.3; }
+  .ph-time { font-size: 10.5px; font-weight: 300; color: rgba(255,255,255,0.3); }
+  .ph-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .p-ice .ph-dot { background: #3BC9A0; }
+  .p-1   .ph-dot { background: #7B9FE0; }
+  .p-2   .ph-dot { background: var(--gold); }
+  .p-3   .ph-dot { background: #3BC9A0; }
+  .p-4   .ph-dot { background: #E8A054; }
+  .p-5   .ph-dot { background: #7BD4A0; }
+  .p-6   .ph-dot { background: #7B9FE0; }
+  .right-footer {
+    margin-top: 20px; padding-top: 16px;
+    border-top: 1px solid rgba(201,168,76,0.15);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .rf-label { font-size: 10px; letter-spacing: 0.10em; color: rgba(255,255,255,0.25); text-transform: uppercase; }
+  .rf-val { font-size: 11px; font-weight: 500; color: var(--gold); letter-spacing: 0.06em; }
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(16px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+  @keyframes ruleGrow { from { width: 0; } to { width: 48px; } }
+  .institution { animation: fadeIn 0.5s ease 0.1s both; }
+  .rule        { animation: ruleGrow 0.6s ease 0.3s both; }
+  .event-tag   { animation: fadeUp 0.5s ease 0.3s both; }
+  h1           { animation: fadeUp 0.7s ease 0.4s both; }
+  .subtitle    { animation: fadeUp 0.6s ease 0.55s both; }
+  .stats       { animation: fadeUp 0.5s ease 0.7s both; }
+  .bottom      { animation: fadeIn 0.5s ease 0.85s both; }
+  .right       { animation: fadeIn 0.6s ease 0.4s both; }
+  .phase:nth-child(1) { animation: fadeUp 0.35s ease 0.50s both; }
+  .phase:nth-child(2) { animation: fadeUp 0.35s ease 0.58s both; }
+  .phase:nth-child(3) { animation: fadeUp 0.35s ease 0.66s both; }
+  .phase:nth-child(4) { animation: fadeUp 0.35s ease 0.74s both; }
+  .phase:nth-child(5) { animation: fadeUp 0.35s ease 0.80s both; }
+  .phase:nth-child(6) { animation: fadeUp 0.35s ease 0.86s both; }
+  .phase:nth-child(7) { animation: fadeUp 0.35s ease 0.92s both; }
+</style>
 </head>
 <body>
-  <h1>Lincoln University of Business and Management — Artificial Intelligence Workshop — coming soon</h1>
+<div class="slide">
+  <div class="bg">
+    <div class="dot-grid"></div>
+    <div class="arc"></div>
+    <div class="arc-2"></div>
+    <div class="right-bg"></div>
+    <div class="stripe"></div>
+    <div class="stripe-2"></div>
+  </div>
+  <div class="left">
+    <div class="institution">
+      <span class="inst-name">Lincoln University of Business and Management</span>
+      <span class="inst-sub">Sharjah, United Arab Emirates &nbsp;·&nbsp; York-Validated MBA Programmes</span>
+    </div>
+    <div class="rule"></div>
+    <div class="main">
+      <div class="event-tag">Internal Staff Development &nbsp;·&nbsp; Full-Day Workshop</div>
+      <h1>Transform<br>with <span class="accent">Intelligence</span></h1>
+      <p class="subtitle">
+        Practical artificial intelligence<br>
+        for <strong>every department, every role.</strong>
+      </p>
+      <div class="stats">
+        <div class="stat"><span class="stat-n">8</span><span class="stat-l">Hours</span></div>
+        <div class="stat"><span class="stat-n">6</span><span class="stat-l">Departments</span></div>
+        <div class="stat"><span class="stat-n">10+</span><span class="stat-l">Exercises</span></div>
+        <div class="stat"><span class="stat-n">09:00</span><span class="stat-l">Start</span></div>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="trainer-block">
+        <span class="trainer-name">Kendall Wilson</span>
+        <span class="trainer-role">Digital Transformation Strategist &nbsp;·&nbsp; DigitAlchemy®</span>
+      </div>
+      <div class="da-mark">DigitAlchemy®<br>contact@digitalabbot.io</div>
+    </div>
+  </div>
+  <div class="right">
+    <div class="agenda-label">Today's Programme</div>
+    <div class="phase-list">
+      <div class="phase p-ice">
+        <span class="ph-num">00</span>
+        <div class="ph-body"><span class="ph-title">Icebreaker — Artificial Intelligence Bingo</span><span class="ph-time">09:00 – 09:30</span></div>
+        <div class="ph-dot"></div>
+      </div>
+      <div class="phase p-1">
+        <span class="ph-num">01</span>
+        <div class="ph-body"><span class="ph-title">Foundation + Prompt Engineering</span><span class="ph-time">09:30 – 10:30</span></div>
+        <div class="ph-dot"></div>
+      </div>
+      <div class="phase p-2">
+        <span class="ph-num">02</span>
+        <div class="ph-body"><span class="ph-title">Department Deep-Dives</span><span class="ph-time">10:45 – 12:15</span></div>
+        <div class="ph-dot"></div>
+      </div>
+      <div class="phase p-3">
+        <span class="ph-num">03</span>
+        <div class="ph-body"><span class="ph-title">Live Workflow Automation</span><span class="ph-time">13:15 – 14:45</span></div>
+        <div class="ph-dot"></div>
+      </div>
+      <div class="phase p-4">
+        <span class="ph-num">04</span>
+        <div class="ph-body"><span class="ph-title">Responsible Artificial Intelligence + Policy</span><span class="ph-time">15:00 – 15:45</span></div>
+        <div class="ph-dot"></div>
+      </div>
+      <div class="phase p-5">
+        <span class="ph-num">05</span>
+        <div class="ph-body"><span class="ph-title">Department Showcase</span><span class="ph-time">15:45 – 16:30</span></div>
+        <div class="ph-dot"></div>
+      </div>
+      <div class="phase p-6">
+        <span class="ph-num">06</span>
+        <div class="ph-body"><span class="ph-title">30-Day Action Plan + Close</span><span class="ph-time">16:30 – 17:00</span></div>
+        <div class="ph-dot"></div>
+      </div>
+    </div>
+    <div class="right-footer">
+      <span class="rf-label">Location</span>
+      <span class="rf-val">Lincoln University of Business and Management</span>
+    </div>
+  </div>
+</div>
 </body>
 </html>
