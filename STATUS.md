@@ -3,8 +3,8 @@
 | # | ID | Title | Status |
 |---|---|---|---|
 | 1 | slide-1 | Cover | COMPLETE |
-| 2 | slide-2 | Agenda | PENDING |
-| 3 | slide-3 | Icebreaker | PENDING |
+| 2 | slide-2 | Presenter Bio (placeholder) | COMPLETE |
+| 3 | slide-3 | Agenda — Day at a Glance | COMPLETE |
 | 4 | slide-4 | Phase 1 — Foundation + Prompt Engineering | PENDING |
 | 5a | slide-5a | Phase 2 — Track A | PENDING |
 | 5b | slide-5b | Phase 2 — Track B | PENDING |

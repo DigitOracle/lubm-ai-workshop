@@ -31,6 +31,8 @@
   .slide {
     width: 100vw; height: 100vh;
     position: relative;
+  }
+  .slide-1 {
     display: grid;
     grid-template-columns: 1fr 380px;
   }
@@ -182,25 +184,217 @@
   }
   @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
   @keyframes ruleGrow { from { width: 0; } to { width: 48px; } }
-  .institution { animation: fadeIn 0.5s ease 0.1s both; }
-  .rule        { animation: ruleGrow 0.6s ease 0.3s both; }
-  .event-tag   { animation: fadeUp 0.5s ease 0.3s both; }
-  h1           { animation: fadeUp 0.7s ease 0.4s both; }
-  .subtitle    { animation: fadeUp 0.6s ease 0.55s both; }
-  .stats       { animation: fadeUp 0.5s ease 0.7s both; }
-  .bottom      { animation: fadeIn 0.5s ease 0.85s both; }
-  .right       { animation: fadeIn 0.6s ease 0.4s both; }
-  .phase:nth-child(1) { animation: fadeUp 0.35s ease 0.50s both; }
-  .phase:nth-child(2) { animation: fadeUp 0.35s ease 0.58s both; }
-  .phase:nth-child(3) { animation: fadeUp 0.35s ease 0.66s both; }
-  .phase:nth-child(4) { animation: fadeUp 0.35s ease 0.74s both; }
-  .phase:nth-child(5) { animation: fadeUp 0.35s ease 0.80s both; }
-  .phase:nth-child(6) { animation: fadeUp 0.35s ease 0.86s both; }
-  .phase:nth-child(7) { animation: fadeUp 0.35s ease 0.92s both; }
+  .slide-1 .institution { animation: fadeIn 0.5s ease 0.1s both; }
+  .slide-1 .rule        { animation: ruleGrow 0.6s ease 0.3s both; }
+  .slide-1 .event-tag   { animation: fadeUp 0.5s ease 0.3s both; }
+  .slide-1 h1           { animation: fadeUp 0.7s ease 0.4s both; }
+  .slide-1 .subtitle    { animation: fadeUp 0.6s ease 0.55s both; }
+  .slide-1 .stats       { animation: fadeUp 0.5s ease 0.7s both; }
+  .slide-1 .bottom      { animation: fadeIn 0.5s ease 0.85s both; }
+  .slide-1 .right       { animation: fadeIn 0.6s ease 0.4s both; }
+  .slide-1 .phase:nth-child(1) { animation: fadeUp 0.35s ease 0.50s both; }
+  .slide-1 .phase:nth-child(2) { animation: fadeUp 0.35s ease 0.58s both; }
+  .slide-1 .phase:nth-child(3) { animation: fadeUp 0.35s ease 0.66s both; }
+  .slide-1 .phase:nth-child(4) { animation: fadeUp 0.35s ease 0.74s both; }
+  .slide-1 .phase:nth-child(5) { animation: fadeUp 0.35s ease 0.80s both; }
+  .slide-1 .phase:nth-child(6) { animation: fadeUp 0.35s ease 0.86s both; }
+  .slide-1 .phase:nth-child(7) { animation: fadeUp 0.35s ease 0.92s both; }
+
+  /* ── Slide 2: Bio placeholder ── */
+  .slide-2 {
+    display: flex; align-items: center; justify-content: center;
+    background: var(--navy);
+  }
+  .slide-2 .placeholder-card {
+    border: 1px solid rgba(201,168,76,0.25); border-radius: 8px;
+    padding: 60px 80px; text-align: center;
+    background: rgba(255,255,255,0.03);
+  }
+  .slide-2 .placeholder-card .ph-label {
+    font-family: var(--font-body); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.20em; text-transform: uppercase;
+    color: rgba(201,168,76,0.5); margin-bottom: 16px;
+  }
+  .slide-2 .placeholder-card h2 {
+    font-family: var(--font-display); font-size: 32px; font-weight: 700;
+    color: var(--gold); margin-bottom: 8px;
+  }
+  .slide-2 .placeholder-card .ph-sub {
+    font-family: var(--font-body); font-size: 14px; font-weight: 300;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* ── Slide 3: Agenda ── */
+  .slide-3 {
+    display: flex; flex-direction: column;
+    padding: 40px 56px 24px 56px;
+    background: var(--navy);
+    overflow: hidden;
+  }
+  .slide-3 .bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+  .slide-3 .bg-dot {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(201,168,76,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .slide-3 .bg-top-stripe {
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold) 0%, transparent 60%);
+  }
+  .slide-3 .header {
+    position: relative; z-index: 1;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 28px;
+  }
+  .slide-3 .slide-label {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 6px;
+  }
+  .slide-3 h2 {
+    font-family: var(--font-display); font-size: 34px; font-weight: 700;
+    color: var(--white); line-height: 1.1;
+  }
+  .slide-3 .header-meta {
+    font-size: 11px; font-weight: 300; color: rgba(255,255,255,0.3);
+    text-align: right; line-height: 1.7;
+  }
+
+  /* Timeline flow */
+  .slide-3 .flow {
+    position: relative; z-index: 1;
+    display: flex; align-items: stretch; gap: 6px;
+    margin-bottom: 24px;
+  }
+  .slide-3 .session {
+    flex: 1; display: flex; flex-direction: column; gap: 4px;
+    padding: 14px 12px; border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.025);
+    min-width: 0;
+  }
+  .slide-3 .session:hover {
+    border-color: rgba(201,168,76,0.3);
+    background: rgba(201,168,76,0.04);
+  }
+  .slide-3 .s-time {
+    font-size: 9.5px; font-weight: 400; color: rgba(255,255,255,0.3);
+    letter-spacing: 0.04em;
+  }
+  .slide-3 .s-label {
+    font-size: 9px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--gold); opacity: 0.7;
+  }
+  .slide-3 .s-title {
+    font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.85);
+    line-height: 1.35;
+  }
+  .slide-3 .s-badge {
+    font-size: 9px; font-weight: 400; letter-spacing: 0.06em;
+    padding: 3px 8px; border-radius: 3px; margin-top: auto; width: fit-content;
+  }
+  .slide-3 .badge-all {
+    background: rgba(59,201,160,0.12); color: #3BC9A0;
+  }
+  .slide-3 .badge-split {
+    background: rgba(201,168,76,0.15); color: var(--gold);
+  }
+  .slide-3 .arrow {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: rgba(201,168,76,0.25); flex-shrink: 0; width: 14px;
+  }
+  .slide-3 .break {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 4px; flex-shrink: 0; width: 56px;
+  }
+  .slide-3 .break-time {
+    font-size: 9px; font-weight: 500; color: rgba(255,255,255,0.25);
+  }
+  .slide-3 .break-line {
+    width: 1px; height: 20px;
+    background: linear-gradient(180deg, rgba(201,168,76,0.3) 0%, transparent 100%);
+  }
+  .slide-3 .break-text {
+    font-size: 8.5px; font-weight: 400; color: rgba(255,255,255,0.2);
+    white-space: nowrap;
+  }
+  .slide-3 .break-lunch .break-text { color: rgba(201,168,76,0.5); }
+
+  /* Department grid */
+  .slide-3 .dept-section { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; }
+  .slide-3 .dept-label {
+    font-size: 10px; font-weight: 400; letter-spacing: 0.10em;
+    color: rgba(255,255,255,0.25); margin-bottom: 12px;
+    padding-bottom: 8px; border-bottom: 1px solid rgba(201,168,76,0.12);
+  }
+  .slide-3 .dept-grid {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; flex: 1;
+  }
+  .slide-3 .dept-card {
+    display: flex; flex-direction: column; gap: 6px;
+    padding: 16px 14px; border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.025);
+    transition: border-color 0.2s;
+  }
+  .slide-3 .dept-card:hover { border-color: rgba(201,168,76,0.3); }
+  .slide-3 .dept-name {
+    font-size: 12px; font-weight: 600; color: var(--white);
+    line-height: 1.3;
+  }
+  .slide-3 .dept-focus {
+    font-size: 10.5px; font-weight: 300; color: rgba(255,255,255,0.4);
+    line-height: 1.5; flex: 1;
+  }
+  .slide-3 .dept-time {
+    font-size: 9px; font-weight: 500; color: var(--gold); opacity: 0.6;
+    letter-spacing: 0.08em;
+  }
+
+  /* Dept colour accents (top border) */
+  .slide-3 .d-academics  { border-top: 2px solid #7B9FE0; }
+  .slide-3 .d-digital    { border-top: 2px solid var(--gold); }
+  .slide-3 .d-events     { border-top: 2px solid #E8A054; }
+  .slide-3 .d-finance    { border-top: 2px solid #3BC9A0; }
+  .slide-3 .d-hr         { border-top: 2px solid #A78BFA; }
+  .slide-3 .d-marketing  { border-top: 2px solid #F472B6; }
+
+  .slide-3 .footer {
+    position: relative; z-index: 1;
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 16px; padding-top: 12px;
+    border-top: 1px solid rgba(201,168,76,0.12);
+  }
+  .slide-3 .footer-note {
+    font-size: 10px; font-weight: 300; color: rgba(255,255,255,0.25);
+  }
+  .slide-3 .footer-brand {
+    font-size: 10px; font-weight: 500; color: rgba(201,168,76,0.35);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── Navigation bar ── */
+  .nav-bar {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    z-index: 100; display: flex; align-items: center; gap: 16px;
+    background: rgba(11,31,58,0.92); border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 6px; padding: 8px 20px;
+    backdrop-filter: blur(8px);
+  }
+  .nav-bar button {
+    background: none; border: none; cursor: pointer;
+    font-size: 18px; color: var(--gold); padding: 4px 8px;
+    line-height: 1; transition: opacity 0.2s;
+  }
+  .nav-bar button:hover { opacity: 0.7; }
+  .nav-bar .nav-counter {
+    font-family: var(--font-body); font-size: 12px; font-weight: 500;
+    color: rgba(255,255,255,0.5); letter-spacing: 0.08em;
+    min-width: 40px; text-align: center;
+  }
 </style>
 </head>
 <body>
-<div class="slide">
+<div class="slide slide-1">
   <div class="bg">
     <div class="dot-grid"></div>
     <div class="arc"></div>
@@ -282,5 +476,168 @@
     </div>
   </div>
 </div>
+
+<!-- Slide 2: Bio placeholder -->
+<div class="slide slide-2" style="display:none;">
+  <div class="placeholder-card">
+    <div class="ph-label">Slide 02</div>
+    <h2>Presenter Bio</h2>
+    <div class="ph-sub">Coming Soon</div>
+  </div>
+</div>
+
+<!-- Slide 3: Agenda -->
+<div class="slide slide-3" style="display:none;">
+  <!-- background -->
+  <div class="bg">
+    <div class="bg-dot"></div>
+    <div class="bg-top-stripe"></div>
+  </div>
+
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <div class="slide-label">Slide 03 &nbsp;·&nbsp; Programme</div>
+      <h2>Day at a Glance</h2>
+    </div>
+    <div class="header-meta">
+      Lincoln University of Business and Management &nbsp;·&nbsp; Sharjah<br>
+      09:00 – 17:00 &nbsp;·&nbsp; Full Day
+    </div>
+  </div>
+
+  <!-- Horizontal timeline flow -->
+  <div class="flow">
+    <div class="session ph-ice">
+      <span class="s-time">09:00 – 09:30</span>
+      <span class="s-label">Icebreaker</span>
+      <span class="s-title">Artificial Intelligence Bingo</span>
+      <span class="s-badge badge-all">All together</span>
+    </div>
+    <div class="arrow">›</div>
+    <div class="session ph-1">
+      <span class="s-time">09:30 – 10:30</span>
+      <span class="s-label">Phase 01</span>
+      <span class="s-title">Foundation + Prompt Engineering</span>
+      <span class="s-badge badge-all">All together</span>
+    </div>
+    <div class="arrow">›</div>
+    <div class="break">
+      <span class="break-time">10:30</span>
+      <div class="break-line"></div>
+      <span class="break-text">15 min break</span>
+    </div>
+    <div class="arrow">›</div>
+    <div class="session ph-2">
+      <span class="s-time">10:45 – 12:15</span>
+      <span class="s-label">Phase 02</span>
+      <span class="s-title">Department Deep-Dives</span>
+      <span class="s-badge badge-split">6 dept tracks ↓</span>
+    </div>
+    <div class="arrow">›</div>
+    <div class="break break-lunch">
+      <span class="break-time">12:15</span>
+      <div class="break-line"></div>
+      <span class="break-text">Lunch 60 min</span>
+    </div>
+    <div class="arrow">›</div>
+    <div class="session ph-3">
+      <span class="s-time">13:15 – 14:45</span>
+      <span class="s-label">Phase 03</span>
+      <span class="s-title">Live Workflow Automation</span>
+      <span class="s-badge badge-all">All together</span>
+    </div>
+    <div class="arrow">›</div>
+    <div class="session ph-4">
+      <span class="s-time">15:00 – 15:45</span>
+      <span class="s-label">Phase 04</span>
+      <span class="s-title">Responsible Artificial Intelligence</span>
+      <span class="s-badge badge-all">All together</span>
+    </div>
+    <div class="arrow">›</div>
+    <div class="session ph-6">
+      <span class="s-time">15:45 – 17:00</span>
+      <span class="s-label">Phase 05 – 06</span>
+      <span class="s-title">Showcase + Action Plan</span>
+      <span class="s-badge badge-all">All together</span>
+    </div>
+  </div>
+
+  <!-- Department expansion -->
+  <div class="dept-section">
+    <div class="dept-label">Phase 02 Department Tracks &nbsp;·&nbsp; 10:45 – 12:15 &nbsp;·&nbsp; Parallel sessions, each department in their own track</div>
+    <div class="dept-grid">
+      <div class="dept-card d-academics">
+        <span class="dept-name">Academics Team</span>
+        <span class="dept-focus">Student communications, Moodle, Zoom scheduling, inquiry handling</span>
+        <span class="dept-time">90 min</span>
+      </div>
+      <div class="dept-card d-digital">
+        <span class="dept-name">Digital Media Team</span>
+        <span class="dept-focus">Content pipelines, artificial intelligence video, batch creation, automation</span>
+        <span class="dept-time">90 min</span>
+      </div>
+      <div class="dept-card d-events">
+        <span class="dept-name">Events Team</span>
+        <span class="dept-focus">Speaker research, event briefs, logistics, promotional content</span>
+        <span class="dept-time">90 min</span>
+      </div>
+      <div class="dept-card d-finance">
+        <span class="dept-name">Finance Team</span>
+        <span class="dept-focus">Zoho Books, expense analysis, invoice automation, budget reporting</span>
+        <span class="dept-time">90 min</span>
+      </div>
+      <div class="dept-card d-hr">
+        <span class="dept-name">Human Resources</span>
+        <span class="dept-focus">Recruitment, onboarding documents, policy drafting, record management</span>
+        <span class="dept-time">90 min</span>
+      </div>
+      <div class="dept-card d-marketing">
+        <span class="dept-name">Marketing Team</span>
+        <span class="dept-focus">Freshsales CRM, lead follow-up sequences, campaign content, WhatsApp</span>
+        <span class="dept-time">90 min</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <span class="footer-note">14:45 – 15:00 &nbsp;·&nbsp; Afternoon break (15 minutes) before Phase 04</span>
+    <span class="footer-brand">DigitAlchemy® &nbsp;·&nbsp; Lincoln University of Business and Management</span>
+  </div>
+
+</div>
+
+<!-- Navigation bar -->
+<div class="nav-bar">
+  <button id="nav-prev" aria-label="Previous slide">‹</button>
+  <span class="nav-counter" id="nav-counter">1 / 3</span>
+  <button id="nav-next" aria-label="Next slide">›</button>
+</div>
+
+<script>
+(function() {
+  var slides = document.querySelectorAll('.slide');
+  var total = slides.length;
+  var current = 0;
+  var counter = document.getElementById('nav-counter');
+
+  function show(idx) {
+    if (idx < 0 || idx >= total) return;
+    slides[current].style.display = 'none';
+    current = idx;
+    slides[current].style.display = '';
+    counter.textContent = (current + 1) + ' / ' + total;
+  }
+
+  document.getElementById('nav-prev').addEventListener('click', function() { show(current - 1); });
+  document.getElementById('nav-next').addEventListener('click', function() { show(current + 1); });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); show(current + 1); }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp')    { e.preventDefault(); show(current - 1); }
+  });
+})();
+</script>
 </body>
 </html>
