@@ -820,7 +820,7 @@
         </div>
         <div style="display:flex;align-items:flex-start;gap:16px;">
           <div style="width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(201,168,76,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:500;color:#C9A84C;font-family:'DM Mono',monospace;">4</div>
-          <div style="padding-top:4px;"><div style="font-size:14px;font-weight:500;color:rgba(255,255,255,0.85);margin-bottom:3px;">Type one word: how do you feel about Artificial Intelligence today?</div><div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.35);">Curious · Excited · Nervous · Ready · Sceptical · Overwhelmed</div></div>
+          <div style="padding-top:4px;"><div style="font-size:14px;font-weight:500;color:rgba(255,255,255,0.85);margin-bottom:3px;">Tap Submit — the AI decides your emotion</div><div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.35);">The AI reads your face and submits automatically — you just confirm</div></div>
         </div>
       </div>
 
@@ -843,6 +843,18 @@
         <div id="slide4-qr" style="width:200px;height:200px;background:#FFFFFF;border:6px solid #FFFFFF;border-radius:8px;display:flex;align-items:center;justify-content:center;"></div>
         <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:rgba(201,168,76,0.7);letter-spacing:0.06em;text-align:center;">lubm-ai-workshop.vercel.app/icebreaker</div>
         <div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.35);text-align:center;line-height:1.6;">Point your phone camera<br>at the code above</div>
+      </div>
+
+      <div id="slide4-cloud-section" style="flex:1;display:flex;flex-direction:column;gap:8px;min-height:0;width:100%;">
+        <div style="font-size:9px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.25);display:flex;justify-content:space-between;align-items:center;">
+          <span>Live Emotion Cloud</span>
+          <span id="slide4-vote-count" style="font-family:'DM Mono',monospace;font-size:10px;color:#1D9E75;">0 responses</span>
+        </div>
+        <div id="slide4-cloud-canvas" style="flex:1;border:1px solid rgba(255,255,255,0.06);border-radius:8px;background:rgba(0,0,0,0.15);position:relative;overflow:hidden;min-height:160px;">
+          <div id="slide4-cloud-empty" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
+            <div style="font-size:11px;font-weight:300;color:rgba(255,255,255,0.15);text-align:center;line-height:1.6;">Waiting for<br>first response...</div>
+          </div>
+        </div>
       </div>
 
       <div style="display:flex;flex-direction:column;align-items:center;gap:4px;align-self:stretch;">
@@ -1047,6 +1059,77 @@ document.addEventListener('DOMContentLoaded', slide2Init);
   } else {
     initSlide4();
   }
+})();
+
+// ── SLIDE 4 FIREBASE WORD CLOUD ──────────────────────────
+(function() {
+  const FIREBASE_URL = 'https://lubm-workshop-default-rtdb.firebaseio.com';
+  const wordCounts = {};
+  const placedWords = {};
+  let totalVotes = 0;
+
+  const EMOTION_COLORS = {
+    'CURIOUS':'#3BC9A0','EXCITED':'#C9A84C','NERVOUS':'#E87040',
+    'SURPRISED':'#7B9FE0','HAPPY':'#7BD4A0','SKEPTICAL':'#A78BFA',
+    'OVERWHELMED':'#F472B6','NEUTRAL':'#8A9BB0','TENSE':'#FB923C','SAD':'#60A5FA'
+  };
+
+  function updateCloud() {
+    const canvas = document.getElementById('slide4-cloud-canvas');
+    const empty = document.getElementById('slide4-cloud-empty');
+    const voteEl = document.getElementById('slide4-vote-count');
+    if (!canvas) return;
+    if (totalVotes === 0) { if(empty) empty.style.display='flex'; return; }
+    if(empty) empty.style.display='none';
+    voteEl.textContent = totalVotes + (totalVotes===1?' response':' responses');
+    const maxCount = Math.max(...Object.values(wordCounts));
+    const W = canvas.offsetWidth || 300;
+    const H = canvas.offsetHeight || 160;
+    Object.entries(wordCounts).forEach(([word, count]) => {
+      const fontSize = Math.round(14 + (count/maxCount) * 38);
+      const color = EMOTION_COLORS[word] || '#C9A84C';
+      if (placedWords[word]) {
+        placedWords[word].style.fontSize = fontSize+'px';
+        placedWords[word].style.opacity = (0.45 + (count/maxCount)*0.55).toFixed(2);
+        return;
+      }
+      const el = document.createElement('div');
+      el.style.cssText = 'position:absolute;font-family:Playfair Display,serif;font-weight:700;transform:translate(-50%,-50%);white-space:nowrap;transition:font-size 0.5s;animation:wordPop 0.6s cubic-bezier(0.175,0.885,0.32,1.275) both;';
+      el.textContent = word;
+      el.style.fontSize = fontSize+'px';
+      el.style.color = color;
+      el.style.opacity = (0.45 + (count/maxCount)*0.55).toFixed(2);
+      el.style.left = (30 + Math.random()*(W-60))+'px';
+      el.style.top = (20 + Math.random()*(H-40))+'px';
+      canvas.appendChild(el);
+      placedWords[word] = el;
+    });
+  }
+
+  // Add keyframe animation for word pop
+  const styleEl = document.createElement('style');
+  styleEl.textContent = '@keyframes wordPop{from{opacity:0;transform:translate(-50%,-50%) scale(0.2)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}';
+  document.head.appendChild(styleEl);
+
+  async function pollFirebase() {
+    try {
+      const res = await fetch(FIREBASE_URL+'/icebreaker/emotions.json');
+      if (!res.ok) return;
+      const data = await res.json();
+      if (!data) return;
+      const newCounts = {};
+      Object.values(data).forEach(entry => {
+        const e = (entry.emotion||'').toUpperCase().trim();
+        if (e) newCounts[e] = (newCounts[e]||0)+1;
+      });
+      let changed = false;
+      let newTotal = 0;
+      Object.entries(newCounts).forEach(([w,c]) => { newTotal+=c; if(wordCounts[w]!==c){wordCounts[w]=c;changed=true;} });
+      if (changed || newTotal!==totalVotes) { totalVotes=newTotal; updateCloud(); }
+    } catch(e) {}
+  }
+  setInterval(pollFirebase, 2000);
+  pollFirebase();
 })();
 
 function enterDeck() {

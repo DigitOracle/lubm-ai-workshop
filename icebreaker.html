@@ -40,12 +40,9 @@
   .br-br { bottom: 80px; right: 12px; transform: scale(-1,-1); }
   .hud-bottom { position: absolute; bottom: 0; left: 0; right: 0; z-index: 10; padding: 16px 20px 32px; background: linear-gradient(to top, rgba(11,31,58,0.95) 0%, transparent 100%); }
   .ai-label { font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(201,168,76,0.6); margin-bottom: 10px; }
-  .word-input-wrap { display: flex; gap: 8px; align-items: center; }
-  #word-input { flex: 1; background: rgba(255,255,255,0.08); border: 1px solid rgba(201,168,76,0.35); border-radius: 4px; padding: 10px 14px; font-size: 14px; font-weight: 500; font-family: 'Courier New', monospace; color: var(--white); letter-spacing: 0.06em; outline: none; }
-  #word-input::placeholder { color: rgba(255,255,255,0.25); }
-  #word-input:focus { border-color: var(--gold); }
-  #submit-btn { padding: 10px 16px; background: var(--gold); color: var(--navy); border: none; border-radius: 4px; font-size: 11px; font-weight: 700; font-family: 'Courier New', monospace; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
+  #submit-btn { width: 100%; padding: 14px 16px; background: var(--gold); color: var(--navy); border: none; border-radius: 4px; font-size: 13px; font-weight: 700; font-family: 'Courier New', monospace; letter-spacing: 0.10em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, opacity 0.2s; white-space: nowrap; }
   #submit-btn:active { background: var(--gold-bright); }
+  #submit-btn:disabled { opacity: 0.35; cursor: not-allowed; }
   #success { position: fixed; inset: 0; z-index: 200; background: var(--navy); display: none; flex-direction: column; align-items: center; justify-content: center; gap: 20px; text-align: center; padding: 40px; }
   .success-icon { width: 64px; height: 64px; border-radius: 50%; background: rgba(29,158,117,0.2); border: 2px solid var(--teal); display: flex; align-items: center; justify-content: center; font-size: 28px; }
   .success-title { font-family: Georgia, serif; font-size: 22px; font-weight: 700; color: var(--white); }
@@ -95,11 +92,8 @@
     <div class="hud-status"><div class="hud-dot"></div><span id="hud-status-text">Scanning</span></div>
   </div>
   <div class="hud-bottom">
-    <div class="ai-label">One word — how do you feel about Artificial Intelligence today?</div>
-    <div class="word-input-wrap">
-      <input type="text" id="word-input" placeholder="e.g. curious, excited, nervous..." maxlength="20" autocomplete="off" autocorrect="off" spellcheck="false">
-      <button id="submit-btn" onclick="submitWord()">Submit</button>
-    </div>
+    <div class="ai-label">The AI thinks you are...</div>
+    <button id="submit-btn" onclick="submitEmotion()" disabled>Detecting face...</button>
   </div>
 </div>
 <div id="success" style="display:none;">
@@ -126,8 +120,10 @@ const EMOTIONS = {
   disgusted: { label: 'SKEPTICAL', emoji: '🤨', color: '#7ABD8A' },
   surprised: { label: 'SURPRISED', emoji: '😮', color: '#3BC9A0' }
 };
+const FIREBASE_URL = 'https://lubm-workshop-default-rtdb.firebaseio.com';
 let model_loaded = false;
 let animFrame = null;
+let currentEmotion = null;
 const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
@@ -183,9 +179,22 @@ async function detectLoop() {
       .withFaceExpressions();
     if (detections.length > 0) {
       document.getElementById('hud-status-text').textContent = 'Face detected';
-      detections.forEach(det => drawFace(det));
+      detections.forEach(det => {
+        drawFace(det);
+        // Track dominant emotion for auto-submit
+        const expressions = det.expressions;
+        let dominant = 'neutral'; let maxScore = 0;
+        Object.entries(expressions).forEach(([emotion, score]) => { if (score > maxScore) { maxScore = score; dominant = emotion; } });
+        const emo = EMOTIONS[dominant] || EMOTIONS.neutral;
+        currentEmotion = emo.label;
+        const btn = document.getElementById('submit-btn');
+        if (btn) { btn.disabled = false; btn.textContent = 'Submit — I am ' + emo.label; }
+      });
     } else {
       document.getElementById('hud-status-text').textContent = 'Scanning...';
+      currentEmotion = null;
+      const btn = document.getElementById('submit-btn');
+      if (btn) { btn.disabled = true; btn.textContent = 'Detecting face...'; }
     }
   } catch(e) {}
   animFrame = requestAnimationFrame(detectLoop);
@@ -235,17 +244,23 @@ function roundRect(ctx, x, y, w, h, r) {
   ctx.lineTo(x,y+r); ctx.quadraticCurveTo(x,y,x+r,y); ctx.closePath();
 }
 
-function submitWord() {
-  const word = document.getElementById('word-input').value.trim();
-  if (!word) { document.getElementById('word-input').focus(); return; }
+async function submitEmotion() {
+  if (!currentEmotion) return;
   if (animFrame) cancelAnimationFrame(animFrame);
   if (video.srcObject) video.srcObject.getTracks().forEach(t => t.stop());
-  document.getElementById('success-word-display').textContent = word.toUpperCase();
+  // Post to Firebase
+  try {
+    await fetch(FIREBASE_URL + '/icebreaker/emotions.json', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ emotion: currentEmotion, ts: Date.now() })
+    });
+  } catch(e) { console.warn('Firebase POST failed:', e); }
+  document.getElementById('success-word-display').textContent = currentEmotion;
   document.getElementById('ar-view').style.display = 'none';
   document.getElementById('success').style.display = 'flex';
 }
 
-document.getElementById('word-input').addEventListener('keydown', e => { if (e.key === 'Enter') submitWord(); });
 loadModels();
 </script>
 </body>
