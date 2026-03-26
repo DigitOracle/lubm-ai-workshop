@@ -24,3 +24,10 @@
 **Fix:** Added prominent play/pause (72px gold circle), mute/unmute (56px gold circle), progress bar with scrubbing, and fullscreen button. Sound off badge shown at top until user unmutes. On unmute click, video.muted = false triggers sound after user interaction — browser allows this.
 **Prevention:** Every video slide in every DigitAlchemy® deck must have visible play/pause and mute/unmute controls. Never rely on browser default controls or assume sound will play on load.
 **Affects:** index.html
+
+## 2026-03-27 — Unmute click changes icon but no sound plays
+**Problem:** Clicking unmute changes the icon correctly but audio does not play
+**Root Cause:** Setting video.muted = false alone does not unlock browser audio. The browser requires video.play() to be called explicitly within the same user gesture (click handler) to grant audio permission. Without play(), the video remains silent even when muted = false.
+**Fix:** Call v.play() inside the unmute branch of the click handler, immediately after setting v.muted = false. Wrap in promise .then()/.catch() to handle browsers that still block.
+**Prevention:** Any time you unmute a video programmatically, always call play() in the same synchronous user gesture. Never rely on muted = false alone.
+**Affects:** index.html, LESSONS_LEARNED.md
