@@ -17,3 +17,10 @@
 **Fix:** Added Content-Type: video/mp4 header in vercel.json for /assets/video/*.mp4
 **Prevention:** Always declare Content-Type header for mp4 files in vercel.json on every project
 **Affects:** vercel.json
+
+## 2026-03-27 — Slide 2 video controls
+**Problem:** Video played but had no sound and no user controls
+**Root Cause:** Browser autoplay policy requires muted attribute for autoplay — sound cannot play without user interaction. No controls were visible to the user.
+**Fix:** Added prominent play/pause (72px gold circle), mute/unmute (56px gold circle), progress bar with scrubbing, and fullscreen button. Sound off badge shown at top until user unmutes. On unmute click, video.muted = false triggers sound after user interaction — browser allows this.
+**Prevention:** Every video slide in every DigitAlchemy® deck must have visible play/pause and mute/unmute controls. Never rely on browser default controls or assume sound will play on load.
+**Affects:** index.html
