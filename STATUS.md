@@ -3,9 +3,10 @@
 | # | ID | Title | Status |
 |---|---|---|---|
 | 1 | slide-1 | Cover | COMPLETE |
-| 2 | slide-2 | Presenter Bio (placeholder) | COMPLETE |
+| 2 | slide-2 | LUBM Video (full-screen with controls) | COMPLETE |
 | 3 | slide-3 | Agenda — Day at a Glance | COMPLETE |
-| 4 | slide-4 | Phase 1 — Foundation + Prompt Engineering | PENDING |
+| 4 | slide-4 | Icebreaker — AR Face Detection + QR | COMPLETE |
+| 5 | slide-5 | Phase 1 — Foundation + Prompt Engineering | PENDING |
 | 5a | slide-5a | Phase 2 — Track A | PENDING |
 | 5b | slide-5b | Phase 2 — Track B | PENDING |
 | 5c | slide-5c | Phase 2 — Track C | PENDING |
