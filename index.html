@@ -784,9 +784,30 @@ function slide2TogglePlay() {
 function slide2ToggleMute() {
   const v = document.getElementById('slide2-video');
   if (!v) return;
-  v.muted = !v.muted;
-  if (!v.muted) v.volume = 1.0;
-  slide2UpdateMuteUI(v.muted);
+
+  if (v.muted) {
+    // Unmuting — must call play() in the same user gesture to unlock audio
+    v.muted = false;
+    v.volume = 1.0;
+    const playPromise = v.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        // Playback started with sound
+        slide2UpdateMuteUI(false);
+      }).catch((err) => {
+        // Browser still blocked — fall back to muted
+        console.warn('Audio unlock failed:', err);
+        v.muted = true;
+        slide2UpdateMuteUI(true);
+      });
+    } else {
+      slide2UpdateMuteUI(false);
+    }
+  } else {
+    // Muting
+    v.muted = true;
+    slide2UpdateMuteUI(true);
+  }
 }
 
 function slide2UpdateMuteUI(isMuted) {
