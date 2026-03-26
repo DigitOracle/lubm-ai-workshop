@@ -21,6 +21,7 @@
   ],
   "routes": [
     { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/icebreaker", "dest": "/icebreaker.html" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }

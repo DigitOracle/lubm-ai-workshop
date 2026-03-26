@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<title>LUBM AI Icebreaker</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0B1F3A; --gold: #C9A84C; --gold-bright: #F0C060;
+    --teal: #1D9E75; --white: #FFFFFF; --red: #E84040;
+  }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font-family: 'Courier New', monospace; touch-action: none; }
+  #loading { position: fixed; inset: 0; z-index: 100; background: var(--navy); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; }
+  .load-logo { font-size: 11px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); }
+  .load-title { font-size: 22px; font-weight: 700; color: var(--white); text-align: center; line-height: 1.3; font-family: Georgia, serif; letter-spacing: 0.02em; }
+  .load-bar-wrap { width: 200px; height: 2px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+  .load-bar { height: 100%; width: 0%; background: var(--gold); transition: width 0.3s ease; }
+  .load-status { font-size: 10px; letter-spacing: 0.14em; color: rgba(255,255,255,0.4); text-transform: uppercase; }
+  .load-dot-grid { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(201,168,76,0.05) 1px, transparent 1px); background-size: 32px 32px; pointer-events: none; }
+  #ar-view { position: fixed; inset: 0; z-index: 1; display: none; }
+  #video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); }
+  #canvas { position: absolute; inset: 0; width: 100%; height: 100%; transform: scaleX(-1); }
+  .hud-top { position: absolute; top: 0; left: 0; right: 0; z-index: 10; padding: 16px 20px 12px; display: flex; align-items: center; justify-content: space-between; background: linear-gradient(to bottom, rgba(11,31,58,0.85) 0%, transparent 100%); }
+  .hud-brand { font-size: 10px; font-weight: 700; letter-spacing: 0.20em; text-transform: uppercase; color: var(--gold); }
+  .hud-status { display: flex; align-items: center; gap: 6px; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+  .hud-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); animation: pulse 1.4s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.7); } }
+  .scan-line { position: absolute; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(201,168,76,0.6), transparent); animation: scanDown 3s linear infinite; pointer-events: none; z-index: 5; }
+  @keyframes scanDown { 0% { top: -2px; opacity: 0; } 5% { opacity: 1; } 95% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+  .bracket { position: absolute; width: 32px; height: 32px; z-index: 6; pointer-events: none; }
+  .bracket::before, .bracket::after { content: ''; position: absolute; background: var(--gold); opacity: 0.7; }
+  .bracket::before { width: 100%; height: 2px; top: 0; left: 0; }
+  .bracket::after { width: 2px; height: 100%; top: 0; left: 0; }
+  .br-tl { top: 12px; left: 12px; }
+  .br-tr { top: 12px; right: 12px; transform: scaleX(-1); }
+  .br-bl { bottom: 80px; left: 12px; transform: scaleY(-1); }
+  .br-br { bottom: 80px; right: 12px; transform: scale(-1,-1); }
+  .hud-bottom { position: absolute; bottom: 0; left: 0; right: 0; z-index: 10; padding: 16px 20px 32px; background: linear-gradient(to top, rgba(11,31,58,0.95) 0%, transparent 100%); }
+  .ai-label { font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(201,168,76,0.6); margin-bottom: 10px; }
+  .word-input-wrap { display: flex; gap: 8px; align-items: center; }
+  #word-input { flex: 1; background: rgba(255,255,255,0.08); border: 1px solid rgba(201,168,76,0.35); border-radius: 4px; padding: 10px 14px; font-size: 14px; font-weight: 500; font-family: 'Courier New', monospace; color: var(--white); letter-spacing: 0.06em; outline: none; }
+  #word-input::placeholder { color: rgba(255,255,255,0.25); }
+  #word-input:focus { border-color: var(--gold); }
+  #submit-btn { padding: 10px 16px; background: var(--gold); color: var(--navy); border: none; border-radius: 4px; font-size: 11px; font-weight: 700; font-family: 'Courier New', monospace; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
+  #submit-btn:active { background: var(--gold-bright); }
+  #success { position: fixed; inset: 0; z-index: 200; background: var(--navy); display: none; flex-direction: column; align-items: center; justify-content: center; gap: 20px; text-align: center; padding: 40px; }
+  .success-icon { width: 64px; height: 64px; border-radius: 50%; background: rgba(29,158,117,0.2); border: 2px solid var(--teal); display: flex; align-items: center; justify-content: center; font-size: 28px; }
+  .success-title { font-family: Georgia, serif; font-size: 22px; font-weight: 700; color: var(--white); }
+  .success-word { font-size: 28px; font-weight: 700; font-family: 'Courier New', monospace; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; }
+  .success-sub { font-size: 12px; color: rgba(255,255,255,0.45); letter-spacing: 0.08em; line-height: 1.6; }
+  .success-mcp { background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.2); border-radius: 6px; padding: 16px 20px; font-size: 11px; color: rgba(201,168,76,0.7); letter-spacing: 0.06em; line-height: 1.7; text-align: left; max-width: 320px; }
+  .success-mcp strong { color: var(--gold); }
+  #cam-prompt { position: fixed; inset: 0; z-index: 50; background: var(--navy); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; text-align: center; padding: 40px; }
+  .cam-icon { width: 72px; height: 72px; border-radius: 50%; background: rgba(201,168,76,0.1); border: 2px solid rgba(201,168,76,0.4); display: flex; align-items: center; justify-content: center; }
+  .cam-icon svg { width: 32px; height: 32px; }
+  .cam-title { font-family: Georgia, serif; font-size: 20px; font-weight: 700; color: var(--white); line-height: 1.3; }
+  .cam-sub { font-size: 12px; color: rgba(255,255,255,0.45); letter-spacing: 0.04em; line-height: 1.7; max-width: 280px; }
+  .cam-btn { padding: 16px 40px; background: var(--gold); color: var(--navy); border: none; border-radius: 4px; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; font-family: 'Courier New', monospace; }
+  .cam-privacy { font-size: 10px; color: rgba(255,255,255,0.25); letter-spacing: 0.06em; line-height: 1.6; max-width: 260px; }
+</style>
+</head>
+<body>
+<div id="loading">
+  <div class="load-dot-grid"></div>
+  <div class="load-logo">DigitAlchemy® · LUBM</div>
+  <div class="load-title">Artificial Intelligence<br>Face Scanner</div>
+  <div class="load-bar-wrap"><div class="load-bar" id="load-bar"></div></div>
+  <div class="load-status" id="load-status">Initialising models...</div>
+</div>
+<div id="cam-prompt" style="display:none;">
+  <div class="load-dot-grid"></div>
+  <div class="cam-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+    </svg>
+  </div>
+  <div class="cam-title">Allow Camera Access</div>
+  <div class="cam-sub">The Artificial Intelligence model runs entirely on your device. No images leave your phone.</div>
+  <button class="cam-btn" onclick="startCamera()">Enable Camera</button>
+  <div class="cam-privacy">Privacy guaranteed · All processing is local · No data transmitted</div>
+</div>
+<div id="ar-view">
+  <video id="video" autoplay muted playsinline></video>
+  <canvas id="canvas"></canvas>
+  <div class="scan-line"></div>
+  <div class="bracket br-tl"></div>
+  <div class="bracket br-tr"></div>
+  <div class="bracket br-bl"></div>
+  <div class="bracket br-br"></div>
+  <div class="hud-top">
+    <div class="hud-brand">LUBM · AI Lab</div>
+    <div class="hud-status"><div class="hud-dot"></div><span id="hud-status-text">Scanning</span></div>
+  </div>
+  <div class="hud-bottom">
+    <div class="ai-label">One word — how do you feel about Artificial Intelligence today?</div>
+    <div class="word-input-wrap">
+      <input type="text" id="word-input" placeholder="e.g. curious, excited, nervous..." maxlength="20" autocomplete="off" autocorrect="off" spellcheck="false">
+      <button id="submit-btn" onclick="submitWord()">Submit</button>
+    </div>
+  </div>
+</div>
+<div id="success" style="display:none;">
+  <div class="load-dot-grid"></div>
+  <div class="success-icon">✓</div>
+  <div class="success-title">You've been seen<br>by Artificial Intelligence</div>
+  <div class="success-word" id="success-word-display"></div>
+  <div class="success-sub">Your word has been captured.<br>Look up at the screen.</div>
+  <div class="success-mcp">
+    <strong>What just happened?</strong><br>
+    Your phone sent a request to a local AI model. The model returned structured data — face coordinates, confidence scores, expression labels. The interface rendered it as a visual overlay.<br><br>
+    <strong>Request → Response → Render. That is the Model Context Protocol.</strong>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
+<script>
+const MODEL_URL = 'https://cdn.jsdelivr.net/npm/@vladmandic/face-api/model';
+const EMOTIONS = {
+  neutral:   { label: 'NEUTRAL',   emoji: '😐', color: '#8A9BB0' },
+  happy:     { label: 'HAPPY',     emoji: '😄', color: '#C9A84C' },
+  sad:       { label: 'SAD',       emoji: '😔', color: '#6B8EAD' },
+  angry:     { label: 'TENSE',     emoji: '😤', color: '#E87040' },
+  fearful:   { label: 'NERVOUS',   emoji: '😅', color: '#A07AE8' },
+  disgusted: { label: 'SKEPTICAL', emoji: '🤨', color: '#7ABD8A' },
+  surprised: { label: 'SURPRISED', emoji: '😮', color: '#3BC9A0' }
+};
+let model_loaded = false;
+let animFrame = null;
+const video = document.getElementById('video');
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+async function loadModels() {
+  const bar = document.getElementById('load-bar');
+  const status = document.getElementById('load-status');
+  try {
+    status.textContent = 'Loading face detector...';
+    bar.style.width = '20%';
+    await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL);
+    status.textContent = 'Loading expression model...';
+    bar.style.width = '65%';
+    await faceapi.nets.faceExpressionNet.loadFromUri(MODEL_URL);
+    bar.style.width = '100%';
+    status.textContent = 'Ready.';
+    model_loaded = true;
+    setTimeout(() => {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('cam-prompt').style.display = 'flex';
+    }, 600);
+  } catch(e) {
+    status.textContent = 'Load error — retrying...';
+    setTimeout(loadModels, 2000);
+  }
+}
+
+async function startCamera() {
+  document.getElementById('cam-prompt').style.display = 'none';
+  document.getElementById('ar-view').style.display = 'block';
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: 'user', width: { ideal: 640 }, height: { ideal: 480 } },
+      audio: false
+    });
+    video.srcObject = stream;
+    video.onloadedmetadata = () => {
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      detectLoop();
+    };
+  } catch(e) {
+    document.getElementById('hud-status-text').textContent = 'Camera denied';
+  }
+}
+
+async function detectLoop() {
+  if (!model_loaded || video.paused || video.ended) { animFrame = requestAnimationFrame(detectLoop); return; }
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  try {
+    const detections = await faceapi
+      .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions({ inputSize: 224, scoreThreshold: 0.4 }))
+      .withFaceExpressions();
+    if (detections.length > 0) {
+      document.getElementById('hud-status-text').textContent = 'Face detected';
+      detections.forEach(det => drawFace(det));
+    } else {
+      document.getElementById('hud-status-text').textContent = 'Scanning...';
+    }
+  } catch(e) {}
+  animFrame = requestAnimationFrame(detectLoop);
+}
+
+function drawFace(det) {
+  const box = det.detection.box;
+  const expressions = det.expressions;
+  let dominant = 'neutral'; let maxScore = 0;
+  Object.entries(expressions).forEach(([emotion, score]) => { if (score > maxScore) { maxScore = score; dominant = emotion; } });
+  const emo = EMOTIONS[dominant] || EMOTIONS.neutral;
+  const color = emo.color;
+  const scaleX = canvas.width / video.videoWidth;
+  const scaleY = canvas.height / video.videoHeight;
+  const x = box.x * scaleX; const y = box.y * scaleY;
+  const w = box.width * scaleX; const h = box.height * scaleY;
+  ctx.shadowColor = color; ctx.shadowBlur = 12;
+  ctx.strokeStyle = color; ctx.lineWidth = 2;
+  ctx.strokeRect(x, y, w, h);
+  ctx.shadowBlur = 0;
+  const cs = 18; ctx.strokeStyle = '#FFFFFF'; ctx.lineWidth = 2.5;
+  [[x,y],[x+w,y],[x,y+h],[x+w,y+h]].forEach(([cx,cy], i) => {
+    ctx.beginPath();
+    const sx = i % 2 === 0 ? 1 : -1; const sy = i < 2 ? 1 : -1;
+    ctx.moveTo(cx, cy + sy * cs); ctx.lineTo(cx, cy); ctx.lineTo(cx + sx * cs, cy);
+    ctx.stroke();
+  });
+  const badgeText = emo.emoji + ' ' + emo.label;
+  ctx.font = 'bold 13px Courier New, monospace';
+  const tw = ctx.measureText(badgeText).width;
+  const bx = x + w / 2 - tw / 2 - 10; const by = y - 32;
+  ctx.fillStyle = 'rgba(11,31,58,0.88)'; ctx.strokeStyle = color; ctx.lineWidth = 1.5;
+  roundRect(ctx, bx - 2, by, tw + 24, 26, 3); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = color; ctx.font = 'bold 13px Courier New, monospace';
+  ctx.textBaseline = 'middle'; ctx.fillText(badgeText, bx + 10, by + 13);
+  ctx.fillStyle = 'rgba(255,255,255,0.1)'; ctx.fillRect(x, y + h + 6, w, 3);
+  ctx.fillStyle = color; ctx.fillRect(x, y + h + 6, w * maxScore, 3);
+  ctx.fillStyle = 'rgba(255,255,255,0.5)'; ctx.font = '9px Courier New';
+  ctx.textBaseline = 'top'; ctx.fillText('CONFIDENCE: ' + Math.round(maxScore * 100) + '%', x, y + h + 12);
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y); ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r); ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  ctx.lineTo(x+r,y+h); ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r); ctx.quadraticCurveTo(x,y,x+r,y); ctx.closePath();
+}
+
+function submitWord() {
+  const word = document.getElementById('word-input').value.trim();
+  if (!word) { document.getElementById('word-input').focus(); return; }
+  if (animFrame) cancelAnimationFrame(animFrame);
+  if (video.srcObject) video.srcObject.getTracks().forEach(t => t.stop());
+  document.getElementById('success-word-display').textContent = word.toUpperCase();
+  document.getElementById('ar-view').style.display = 'none';
+  document.getElementById('success').style.display = 'flex';
+}
+
+document.getElementById('word-input').addEventListener('keydown', e => { if (e.key === 'Enter') submitWord(); });
+loadModels();
+</script>
+</body>
+</html>

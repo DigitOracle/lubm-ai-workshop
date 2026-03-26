@@ -367,6 +367,18 @@
     color: rgba(255,255,255,0.5); letter-spacing: 0.08em;
     min-width: 40px; text-align: center;
   }
+
+  /* ── Slide 4: Icebreaker animations ── */
+  @keyframes slideScan {
+    0% { top: 0; opacity: 0; }
+    5% { opacity: 1; }
+    95% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+  @keyframes dotPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
 </style>
 </head>
 <body>
@@ -769,6 +781,81 @@
 
 </div>
 
+<!-- Slide 4: Icebreaker — AR Face Detection -->
+<div class="slide" id="slide-4" style="display:none; position:relative; width:100vw; height:100vh; background:#0B1F3A; overflow:hidden; font-family:'DM Sans',sans-serif;">
+
+  <div style="position:absolute;inset:0;z-index:0;overflow:hidden;">
+    <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(201,168,76,0.055) 1px,transparent 1px);background-size:40px 40px;"></div>
+    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#C9A84C,rgba(201,168,76,0.1));"></div>
+  </div>
+
+  <div style="position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent);animation:slideScan 4s linear infinite;z-index:2;pointer-events:none;"></div>
+
+  <div style="position:relative;z-index:1;display:grid;grid-template-columns:1fr 380px;width:100%;height:100%;">
+
+    <!-- LEFT -->
+    <div style="padding:52px 56px 44px 72px;display:flex;flex-direction:column;justify-content:space-between;">
+
+      <div>
+        <div style="font-size:10px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#C9A84C;margin-bottom:8px;">
+          Slide 04 &nbsp;·&nbsp; Icebreaker &nbsp;·&nbsp;
+          <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#1D9E75;animation:dotPulse 1.4s ease-in-out infinite;vertical-align:middle;margin-right:4px;"></span>Live Activity
+        </div>
+        <div style="font-family:'Playfair Display',serif;font-size:40px;font-weight:700;color:#FFFFFF;line-height:1;margin-bottom:8px;">Artificial Intelligence<br>Reads the Room</div>
+        <div style="font-size:14px;font-weight:300;color:rgba(255,255,255,0.45);letter-spacing:0.04em;">Real-time face detection on your own device &nbsp;·&nbsp; No app &nbsp;·&nbsp; No data leaves your phone</div>
+      </div>
+
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;padding:28px 0;">
+        <div style="display:flex;align-items:flex-start;gap:16px;">
+          <div style="width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(201,168,76,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:500;color:#C9A84C;font-family:'DM Mono',monospace;">1</div>
+          <div style="padding-top:4px;"><div style="font-size:14px;font-weight:500;color:rgba(255,255,255,0.85);margin-bottom:3px;">Scan the QR code with your phone</div><div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.35);">Opens in your mobile browser instantly — no download required</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:16px;">
+          <div style="width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(201,168,76,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:500;color:#C9A84C;font-family:'DM Mono',monospace;">2</div>
+          <div style="padding-top:4px;"><div style="font-size:14px;font-weight:500;color:rgba(255,255,255,0.85);margin-bottom:3px;">Allow camera access when prompted</div><div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.35);">The Artificial Intelligence model runs entirely on your device — nothing is transmitted</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:16px;">
+          <div style="width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(201,168,76,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:500;color:#C9A84C;font-family:'DM Mono',monospace;">3</div>
+          <div style="padding-top:4px;"><div style="font-size:14px;font-weight:500;color:rgba(255,255,255,0.85);margin-bottom:3px;">Watch the Artificial Intelligence detect your face in real time</div><div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.35);">Bounding box, emotion label, confidence score — all computed locally by a neural network</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:16px;">
+          <div style="width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(201,168,76,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:500;color:#C9A84C;font-family:'DM Mono',monospace;">4</div>
+          <div style="padding-top:4px;"><div style="font-size:14px;font-weight:500;color:rgba(255,255,255,0.85);margin-bottom:3px;">Type one word: how do you feel about Artificial Intelligence today?</div><div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.35);">Curious · Excited · Nervous · Ready · Sceptical · Overwhelmed</div></div>
+        </div>
+      </div>
+
+      <div style="border:1px solid rgba(201,168,76,0.2);border-left:3px solid #C9A84C;border-radius:4px;padding:14px 16px;background:rgba(201,168,76,0.04);">
+        <div style="font-size:9px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#C9A84C;margin-bottom:6px;font-family:'DM Mono',monospace;">Trainer note — the MCP moment</div>
+        <div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.5);line-height:1.6;">After everyone scans: <span style="color:rgba(255,255,255,0.75);font-weight:500;">"What just happened is the Model Context Protocol in miniature. Request → Response → Render. Your phone asked an AI model for a capability. The model returned structured data. The interface rendered it. That is MCP."</span></div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div style="border-left:1px solid rgba(201,168,76,0.12);background:rgba(255,255,255,0.02);padding:48px 36px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;">
+
+      <div style="font-size:10px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#C9A84C;display:flex;align-items:center;gap:8px;align-self:stretch;">
+        Scan to join
+        <div style="flex:1;height:1px;background:rgba(201,168,76,0.2);"></div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;align-items:center;gap:16px;flex:1;justify-content:center;">
+        <div id="slide4-qr" style="width:200px;height:200px;background:#FFFFFF;border:6px solid #FFFFFF;border-radius:8px;display:flex;align-items:center;justify-content:center;"></div>
+        <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:rgba(201,168,76,0.7);letter-spacing:0.06em;text-align:center;">lubm-ai-workshop.vercel.app/icebreaker</div>
+        <div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.35);text-align:center;line-height:1.6;">Point your phone camera<br>at the code above</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px;align-self:stretch;">
+        <div style="font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.25);">Time remaining</div>
+        <div id="slide4-timer" style="font-family:'DM Mono',monospace;font-size:28px;font-weight:500;color:#1D9E75;letter-spacing:0.1em;">05:00</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="position:absolute;bottom:24px;left:72px;font-size:10px;font-weight:300;color:rgba(255,255,255,0.18);letter-spacing:0.05em;z-index:1;">DigitAlchemy® · Lincoln University of Business and Management · Sharjah</div>
+</div>
+
 <!-- Navigation bar -->
 <div class="nav-bar">
   <button id="nav-prev" aria-label="Previous slide">‹</button>
@@ -915,6 +1002,52 @@ function slide2ToggleFullscreen() {
 
 // initialise when DOM is ready
 document.addEventListener('DOMContentLoaded', slide2Init);
+
+// ── SLIDE 4 QR + TIMER ──────────────────────────────────
+(function() {
+  function initSlide4() {
+    // QR code
+    if (typeof QRCode !== 'undefined' && document.getElementById('slide4-qr')) {
+      new QRCode(document.getElementById('slide4-qr'), {
+        text: 'https://lubm-ai-workshop.vercel.app/icebreaker',
+        width: 188, height: 188,
+        colorDark: '#0B1F3A', colorLight: '#FFFFFF',
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    }
+    // Timer — only starts when slide 4 becomes visible
+    let slide4Seconds = 300;
+    let slide4Interval = null;
+    const timerEl = document.getElementById('slide4-timer');
+    const slide4El = document.getElementById('slide-4');
+    if (!slide4El || !timerEl) return;
+    const obs = new MutationObserver(() => {
+      const visible = slide4El.style.display !== 'none';
+      if (visible && !slide4Interval) {
+        slide4Interval = setInterval(() => {
+          slide4Seconds--;
+          if (slide4Seconds <= 0) { clearInterval(slide4Interval); timerEl.textContent = '00:00'; return; }
+          const m = Math.floor(slide4Seconds / 60);
+          const s = slide4Seconds % 60;
+          timerEl.textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+          if (slide4Seconds <= 60) timerEl.style.color = '#E87040';
+          if (slide4Seconds <= 30) timerEl.style.color = '#E84040';
+        }, 1000);
+      }
+    });
+    obs.observe(slide4El, { attributes: true, attributeFilter: ['style'] });
+  }
+
+  // Load QR library then init
+  if (typeof QRCode === 'undefined') {
+    const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
+    s.onload = initSlide4;
+    document.head.appendChild(s);
+  } else {
+    initSlide4();
+  }
+})();
 
 function enterDeck() {
   // This click satisfies Chrome's Media Engagement Index requirement
