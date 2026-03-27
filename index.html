@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1280">
-<title>Lincoln University of Business and Management â Artificial Intelligence Workshop</title>
+<title>Lincoln University of Business and Management - Artificial Intelligence Workshop</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
@@ -434,7 +434,27 @@
   gap:32px;
   font-family:'DM Sans',sans-serif;
 ">
-  <!-- subtle dot grid -->
+  <div style="position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:0.06;">
+  <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet">
+    <g transform="translate(200,150)" opacity="1">
+      <!-- Shield outline -->
+      <path d="M0,-90 L55,-65 L70,10 L0,70 L-70,10 L-55,-65 Z" fill="none" stroke="#C9A84C" stroke-width="3"/>
+      <!-- Inner shield detail -->
+      <path d="M0,-70 L42,-50 L54,8 L0,54 L-54,8 L-42,-50 Z" fill="none" stroke="#C9A84C" stroke-width="1.5"/>
+      <!-- LINCOLN text -->
+      <text x="0" y="-18" text-anchor="middle" font-family="serif" font-size="22" font-weight="700" letter-spacing="4" fill="#C9A84C">LINCOLN</text>
+      <!-- Divider line -->
+      <line x1="-40" y1="-8" x2="40" y2="-8" stroke="#C9A84C" stroke-width="1"/>
+      <!-- UNIVERSITY text -->
+      <text x="0" y="6" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="500" letter-spacing="2" fill="#C9A84C">UNIVERSITY OF</text>
+      <text x="0" y="17" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="500" letter-spacing="2" fill="#C9A84C">BUSINESS &amp; MANAGEMENT</text>
+      <!-- Keep Learning -->
+      <rect x="-36" y="24" width="72" height="14" fill="#C9A84C" opacity="0.3"/>
+      <text x="0" y="34" text-anchor="middle" font-family="sans-serif" font-size="7" font-weight="600" letter-spacing="1.5" fill="#0B1F3A">KEEP LEARNING</text>
+    </g>
+  </svg>
+</div>
+    <!-- subtle dot grid -->
   <div style="
     position:absolute; inset:0;
     background-image:radial-gradient(circle, rgba(201,168,76,0.06) 1px, transparent 1px);
@@ -497,7 +517,26 @@
 
 <div class="slide slide-1">
   <div class="bg">
-    <div class="dot-grid"></div>
+    <div class="dot-grid"></div><div style="position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:0.06;">
+  <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet">
+    <g transform="translate(200,150)" opacity="1">
+      <!-- Shield outline -->
+      <path d="M0,-90 L55,-65 L70,10 L0,70 L-70,10 L-55,-65 Z" fill="none" stroke="#C9A84C" stroke-width="3"/>
+      <!-- Inner shield detail -->
+      <path d="M0,-70 L42,-50 L54,8 L0,54 L-54,8 L-42,-50 Z" fill="none" stroke="#C9A84C" stroke-width="1.5"/>
+      <!-- LINCOLN text -->
+      <text x="0" y="-18" text-anchor="middle" font-family="serif" font-size="22" font-weight="700" letter-spacing="4" fill="#C9A84C">LINCOLN</text>
+      <!-- Divider line -->
+      <line x1="-40" y1="-8" x2="40" y2="-8" stroke="#C9A84C" stroke-width="1"/>
+      <!-- UNIVERSITY text -->
+      <text x="0" y="6" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="500" letter-spacing="2" fill="#C9A84C">UNIVERSITY OF</text>
+      <text x="0" y="17" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="500" letter-spacing="2" fill="#C9A84C">BUSINESS &amp; MANAGEMENT</text>
+      <!-- Keep Learning -->
+      <rect x="-36" y="24" width="72" height="14" fill="#C9A84C" opacity="0.3"/>
+      <text x="0" y="34" text-anchor="middle" font-family="sans-serif" font-size="7" font-weight="600" letter-spacing="1.5" fill="#0B1F3A">KEEP LEARNING</text>
+    </g>
+  </svg>
+</div>
     <div class="arc"></div>
     <div class="arc-2"></div>
     <div class="right-bg"></div>
@@ -702,8 +741,27 @@
 </div>
 
 <!-- Slide 3: Agenda Hub -->
-<div class="slide slide-3" id="slide-3-hub" style="display:none;position:relative;width:100vw;height:100vh;background:#0B1F3A;overflow:hidden;font-family:'DM Sans',sans-serif;">
-<div style="position:absolute;inset:0;z-index:0;pointer-events:none;"><div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(201,168,76,0.05) 1px,transparent 1px);background-size:40px 40px;"></div><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#C9A84C,rgba(201,168,76,0.1));"></div></div>
+<div class="slide slide-3" id="slide-3-hub" data-has-watermark="true" style="display:none;position:relative;width:100vw;height:100vh;background:#0B1F3A;overflow:hidden;font-family:'DM Sans',sans-serif;">
+<div style="position:absolute;inset:0;z-index:0;pointer-events:none;"><div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(201,168,76,0.05) 1px,transparent 1px);background-size:40px 40px;"></div><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#C9A84C,rgba(201,168,76,0.1));"></div><div style="position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:0.06;">
+  <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet">
+    <g transform="translate(200,150)" opacity="1">
+      <!-- Shield outline -->
+      <path d="M0,-90 L55,-65 L70,10 L0,70 L-70,10 L-55,-65 Z" fill="none" stroke="#C9A84C" stroke-width="3"/>
+      <!-- Inner shield detail -->
+      <path d="M0,-70 L42,-50 L54,8 L0,54 L-54,8 L-42,-50 Z" fill="none" stroke="#C9A84C" stroke-width="1.5"/>
+      <!-- LINCOLN text -->
+      <text x="0" y="-18" text-anchor="middle" font-family="serif" font-size="22" font-weight="700" letter-spacing="4" fill="#C9A84C">LINCOLN</text>
+      <!-- Divider line -->
+      <line x1="-40" y1="-8" x2="40" y2="-8" stroke="#C9A84C" stroke-width="1"/>
+      <!-- UNIVERSITY text -->
+      <text x="0" y="6" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="500" letter-spacing="2" fill="#C9A84C">UNIVERSITY OF</text>
+      <text x="0" y="17" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="500" letter-spacing="2" fill="#C9A84C">BUSINESS &amp; MANAGEMENT</text>
+      <!-- Keep Learning -->
+      <rect x="-36" y="24" width="72" height="14" fill="#C9A84C" opacity="0.3"/>
+      <text x="0" y="34" text-anchor="middle" font-family="sans-serif" font-size="7" font-weight="600" letter-spacing="1.5" fill="#0B1F3A">KEEP LEARNING</text>
+    </g>
+  </svg>
+</div></div>
 <div style="position:relative;z-index:1;display:flex;flex-direction:column;height:100%;padding:32px 48px 24px;">
 <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;flex-shrink:0;"><div><div style="font-size:10px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#C9A84C;margin-bottom:5px;">Slide 03 &middot; Programme</div><div style="font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:#FFFFFF;line-height:1.1;">Day at a Glance</div></div><div style="font-size:11px;font-weight:300;color:rgba(255,255,255,0.3);text-align:right;line-height:1.7;">Lincoln University of Business and Management &middot; Sharjah<br>09:00 &ndash; 17:00 &middot; Full Day</div></div>
 <div style="flex:1;display:flex;flex-direction:column;gap:9px;overflow:hidden;">
