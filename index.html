@@ -379,6 +379,48 @@
     0%, 100% { opacity: 1; }
     50% { opacity: 0.3; }
   }
+
+  /* ── Poll overlay panel ── */
+  .poll-trigger{position:fixed;bottom:20px;right:20px;z-index:90;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;transition:opacity 0.2s}
+  .poll-trigger:hover{opacity:0.8}
+  .poll-trigger-qr{width:56px;height:56px;background:var(--white);border-radius:6px;padding:4px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .poll-trigger-label{font-size:7px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+  .poll-panel{position:fixed;top:0;right:0;bottom:0;width:340px;background:rgba(8,18,32,0.97);border-left:1px solid rgba(201,168,76,0.2);z-index:95;display:flex;flex-direction:column;transform:translateX(100%);transition:transform 0.4s cubic-bezier(0.4,0,0.2,1)}
+  .poll-panel.open{transform:translateX(0)}
+  .poll-panel-header{padding:20px 20px 16px;border-bottom:1px solid rgba(201,168,76,0.12);display:flex;flex-direction:column;gap:6px}
+  .poll-panel-lbl{font-size:9px;font-weight:500;letter-spacing:0.20em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:8px}
+  .pp-dot{width:7px;height:7px;border-radius:50%;background:#1D9E75;animation:ppPulse 1.4s ease-in-out infinite}
+  @keyframes ppPulse{0%,100%{opacity:1}50%{opacity:0.3}}
+  .poll-panel-topic{font-size:11px;font-weight:500;color:rgba(255,255,255,0.5)}
+  .poll-panel-q{font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--white);line-height:1.3}
+  .poll-stats{padding:12px 20px;display:flex;gap:16px;border-bottom:1px solid rgba(255,255,255,0.05)}
+  .pp-stat{display:flex;flex-direction:column;gap:2px}
+  .pp-stat-n{font-size:20px;font-weight:500;color:var(--white);line-height:1}
+  .pp-stat-l{font-size:9px;font-weight:400;letter-spacing:0.10em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+  .poll-chart{flex:1;padding:16px 20px;display:flex;flex-direction:column;gap:10px}
+  .pp-bar-row{display:grid;grid-template-columns:20px 1fr 36px;align-items:center;gap:10px}
+  .pp-bar-score{font-size:13px;font-weight:500;text-align:right}
+  .pp-bar-track{height:28px;background:rgba(255,255,255,0.05);border-radius:4px;overflow:hidden}
+  .pp-bar-fill{height:100%;border-radius:4px;transition:width 0.6s cubic-bezier(0.4,0,0.2,1);display:flex;align-items:center;padding-left:8px;min-width:0}
+  .pp-bar-lbl{font-size:9px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.7);white-space:nowrap;opacity:0;transition:opacity 0.3s 0.3s}
+  .pp-bar-fill.has-data .pp-bar-lbl{opacity:1}
+  .pp-bar-count{font-size:11px;font-weight:500;color:rgba(255,255,255,0.5);text-align:right}
+  .pp-b1{background:linear-gradient(90deg,#E84040,#C43030)}.pp-b1t{color:#E84040}
+  .pp-b2{background:linear-gradient(90deg,#E87040,#C45828)}.pp-b2t{color:#E87040}
+  .pp-b3{background:linear-gradient(90deg,#C9A84C,#A88838)}.pp-b3t{color:#C9A84C}
+  .pp-b4{background:linear-gradient(90deg,#7BC9A0,#58A87C)}.pp-b4t{color:#7BC9A0}
+  .pp-b5{background:linear-gradient(90deg,#1D9E75,#148060)}.pp-b5t{color:#1D9E75}
+  .poll-controls{padding:14px 20px;border-top:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;gap:8px}
+  .pp-ctrl-lbl{font-size:9px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.25)}
+  .pp-select{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:5px;padding:8px 10px;font-size:11px;color:rgba(255,255,255,0.7);outline:none;cursor:pointer;width:100%}
+  .pp-select option{background:#0B1F3A}
+  .pp-btn-row{display:flex;gap:8px}
+  .pp-btn{flex:1;padding:10px 12px;border:none;border-radius:5px;font-size:11px;font-weight:500;letter-spacing:0.06em;cursor:pointer;transition:opacity 0.2s}
+  .pp-btn:active{opacity:0.8}
+  .pp-btn-launch{background:#1D9E75;color:#fff}
+  .pp-btn-reset{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.1)}
+  .pp-hint{font-size:9px;font-weight:300;color:rgba(255,255,255,0.2);text-align:center;margin-top:4px}
+  .poll-shortcut{position:fixed;bottom:20px;right:88px;z-index:90;font-size:9px;font-weight:400;letter-spacing:0.08em;color:rgba(255,255,255,0.15)}
 </style>
 </head>
 <body>
@@ -1150,6 +1192,193 @@ function enterDeck() {
     }, 500);
   }
 }
+</script>
+
+<!-- Poll trigger (bottom-right QR) -->
+<div class="poll-trigger" onclick="ppToggle()">
+  <div class="poll-trigger-qr" id="ppTriggerQR"></div>
+  <span class="poll-trigger-label">Poll</span>
+</div>
+<div class="poll-shortcut">P to toggle</div>
+
+<!-- Poll slide-out panel -->
+<div class="poll-panel" id="ppPanel">
+  <div class="poll-panel-header">
+    <div class="poll-panel-lbl"><div class="pp-dot"></div>Confidence Poll</div>
+    <div class="poll-panel-topic" id="ppTopic">Select a phase below</div>
+    <div class="poll-panel-q" id="ppQuestion">How confident are you with what we just covered?</div>
+  </div>
+  <div class="poll-stats">
+    <div class="pp-stat"><span class="pp-stat-n" id="ppTotal">0</span><span class="pp-stat-l">Responses</span></div>
+    <div class="pp-stat"><span class="pp-stat-n" id="ppAvg">—</span><span class="pp-stat-l">Average</span></div>
+  </div>
+  <div class="poll-chart">
+    <div class="pp-bar-row"><span class="pp-bar-score pp-b5t">5</span><div class="pp-bar-track"><div class="pp-bar-fill pp-b5" id="ppBar5" style="width:0%"><span class="pp-bar-lbl">Got it</span></div></div><span class="pp-bar-count" id="ppCnt5">0</span></div>
+    <div class="pp-bar-row"><span class="pp-bar-score pp-b4t">4</span><div class="pp-bar-track"><div class="pp-bar-fill pp-b4" id="ppBar4" style="width:0%"><span class="pp-bar-lbl">Clear</span></div></div><span class="pp-bar-count" id="ppCnt4">0</span></div>
+    <div class="pp-bar-row"><span class="pp-bar-score pp-b3t">3</span><div class="pp-bar-track"><div class="pp-bar-fill pp-b3" id="ppBar3" style="width:0%"><span class="pp-bar-lbl">OK</span></div></div><span class="pp-bar-count" id="ppCnt3">0</span></div>
+    <div class="pp-bar-row"><span class="pp-bar-score pp-b2t">2</span><div class="pp-bar-track"><div class="pp-bar-fill pp-b2" id="ppBar2" style="width:0%"><span class="pp-bar-lbl">Unsure</span></div></div><span class="pp-bar-count" id="ppCnt2">0</span></div>
+    <div class="pp-bar-row"><span class="pp-bar-score pp-b1t">1</span><div class="pp-bar-track"><div class="pp-bar-fill pp-b1" id="ppBar1" style="width:0%"><span class="pp-bar-lbl">Lost</span></div></div><span class="pp-bar-count" id="ppCnt1">0</span></div>
+  </div>
+  <div class="poll-controls">
+    <div class="pp-ctrl-lbl">Phase</div>
+    <select class="pp-select" id="ppPhaseSelect">
+      <option value="icebreaker" data-topic="Icebreaker" data-q="How comfortable are you with Artificial Intelligence right now?">00 — Icebreaker</option>
+      <option value="phase1" data-topic="Phase 01 — Foundation" data-q="How confident are you with prompt engineering basics?">01 — Foundation + Prompt Engineering</option>
+      <option value="phase2-academics" data-topic="Phase 02 — Academics" data-q="How confident are you applying Artificial Intelligence to your academic workflows?">02 — Academics Deep-Dive</option>
+      <option value="phase2-digital" data-topic="Phase 02 — Digital Media" data-q="How confident are you using Artificial Intelligence in your content pipeline?">02 — Digital Media Deep-Dive</option>
+      <option value="phase2-events" data-topic="Phase 02 — Events" data-q="How confident are you using Artificial Intelligence for event planning?">02 — Events Deep-Dive</option>
+      <option value="phase2-finance" data-topic="Phase 02 — Finance" data-q="How confident are you using Artificial Intelligence for financial workflows?">02 — Finance Deep-Dive</option>
+      <option value="phase2-hr" data-topic="Phase 02 — HR" data-q="How confident are you using Artificial Intelligence for HR processes?">02 — HR Deep-Dive</option>
+      <option value="phase2-marketing" data-topic="Phase 02 — Marketing" data-q="How confident are you using Artificial Intelligence for marketing and CRM?">02 — Marketing Deep-Dive</option>
+      <option value="phase3" data-topic="Phase 03 — Automation" data-q="How confident are you building automated workflows?">03 — Live Workflow Automation</option>
+      <option value="phase4" data-topic="Phase 04 — Responsible AI" data-q="How confident are you with responsible Artificial Intelligence practices?">04 — Responsible Artificial Intelligence</option>
+      <option value="phase5" data-topic="Phase 05 — Showcase" data-q="How confident are you presenting your department's Artificial Intelligence use case?">05 — Department Showcase</option>
+      <option value="phase6" data-topic="Phase 06 — Action Plan" data-q="How confident are you creating a 30-day Artificial Intelligence action plan?">06 — 30-Day Action Plan</option>
+    </select>
+    <div class="pp-btn-row">
+      <button class="pp-btn pp-btn-launch" onclick="ppLaunch()">Launch Poll</button>
+      <button class="pp-btn pp-btn-reset" onclick="ppReset()">Reset</button>
+    </div>
+    <div class="pp-hint">Press P to toggle panel · Esc to close</div>
+  </div>
+</div>
+
+<script>
+// ── POLL PANEL SYSTEM ──────────────────────────────────
+(function(){
+  const FB = 'https://lubm-workshop-default-rtdb.firebaseio.com';
+  let ppOpen = false;
+  let ppCurrentId = null;
+  let ppPollInterval = null;
+
+  // Toggle panel
+  window.ppToggle = function() {
+    ppOpen = !ppOpen;
+    document.getElementById('ppPanel').classList.toggle('open', ppOpen);
+  };
+
+  // Keyboard shortcuts
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'p' || e.key === 'P') {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
+      e.preventDefault();
+      ppToggle();
+    }
+    if (e.key === 'Escape' && ppOpen) {
+      ppOpen = false;
+      document.getElementById('ppPanel').classList.remove('open');
+    }
+  });
+
+  // Launch poll
+  window.ppLaunch = async function() {
+    const sel = document.getElementById('ppPhaseSelect');
+    const opt = sel.options[sel.selectedIndex];
+    const phase = sel.value;
+    const topic = opt.getAttribute('data-topic');
+    const question = opt.getAttribute('data-q');
+    const pollId = phase + '-' + Date.now();
+
+    // Update panel display
+    document.getElementById('ppTopic').textContent = topic;
+    document.getElementById('ppQuestion').textContent = question;
+
+    // Write to Firebase
+    try {
+      await fetch(FB + '/polls/current.json', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ active: true, id: pollId, topic: topic, question: question, ts: Date.now() })
+      });
+    } catch(e) { console.warn('Poll launch failed:', e); }
+
+    ppCurrentId = pollId;
+    ppResetBars();
+    if (ppPollInterval) clearInterval(ppPollInterval);
+    ppPollInterval = setInterval(ppPollResponses, 2000);
+    ppPollResponses();
+  };
+
+  // Reset poll
+  window.ppReset = async function() {
+    try {
+      await fetch(FB + '/polls/current.json', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ active: false })
+      });
+    } catch(e) {}
+    ppCurrentId = null;
+    if (ppPollInterval) { clearInterval(ppPollInterval); ppPollInterval = null; }
+    ppResetBars();
+    document.getElementById('ppTopic').textContent = 'Select a phase below';
+    document.getElementById('ppTotal').textContent = '0';
+    document.getElementById('ppAvg').textContent = '—';
+  };
+
+  function ppResetBars() {
+    for (let i = 1; i <= 5; i++) {
+      const bar = document.getElementById('ppBar' + i);
+      const cnt = document.getElementById('ppCnt' + i);
+      if (bar) { bar.style.width = '0%'; bar.classList.remove('has-data'); }
+      if (cnt) cnt.textContent = '0';
+    }
+    document.getElementById('ppTotal').textContent = '0';
+    document.getElementById('ppAvg').textContent = '—';
+  }
+
+  async function ppPollResponses() {
+    if (!ppCurrentId) return;
+    try {
+      const res = await fetch(FB + '/polls/' + ppCurrentId + '/responses.json');
+      if (!res.ok) return;
+      const data = await res.json();
+      if (!data) return;
+      const counts = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+      let total = 0;
+      let sum = 0;
+      Object.values(data).forEach(entry => {
+        const s = entry.score;
+        if (s >= 1 && s <= 5) { counts[s]++; total++; sum += s; }
+      });
+      const max = Math.max(...Object.values(counts), 1);
+      for (let i = 1; i <= 5; i++) {
+        const bar = document.getElementById('ppBar' + i);
+        const cnt = document.getElementById('ppCnt' + i);
+        const pct = Math.round((counts[i] / max) * 100);
+        if (bar) {
+          bar.style.width = pct + '%';
+          if (counts[i] > 0) bar.classList.add('has-data');
+          else bar.classList.remove('has-data');
+        }
+        if (cnt) cnt.textContent = counts[i];
+      }
+      document.getElementById('ppTotal').textContent = total;
+      document.getElementById('ppAvg').textContent = total > 0 ? (sum / total).toFixed(1) : '—';
+    } catch(e) {}
+  }
+
+  // Init QR code in trigger
+  function ppInitQR() {
+    if (typeof QRCode !== 'undefined' && document.getElementById('ppTriggerQR')) {
+      new QRCode(document.getElementById('ppTriggerQR'), {
+        text: 'https://lubm-ai-workshop.vercel.app/poll',
+        width: 48, height: 48,
+        colorDark: '#0B1F3A', colorLight: '#FFFFFF',
+        correctLevel: QRCode.CorrectLevel.M
+      });
+    }
+  }
+
+  // Wait for QRCode lib (already loaded by slide 4)
+  if (typeof QRCode !== 'undefined') {
+    ppInitQR();
+  } else {
+    const checkQR = setInterval(function() {
+      if (typeof QRCode !== 'undefined') { clearInterval(checkQR); ppInitQR(); }
+    }, 500);
+  }
+})();
 </script>
 </body>
 </html>
