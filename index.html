@@ -721,7 +721,193 @@
 </div>
 </div>
 
-<div class="slide" id="slide-ice-a1" style="display:none;position:relative;width:100vw;height:100vh;background:#0B1F3A;overflow:hidden;font-family:'DM Sans',sans-serif;"><div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(201,168,76,0.05) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;"></div><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#3BC9A0,transparent);"></div><div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:20px;padding:60px;"><div style="font-size:10px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#3BC9A0;opacity:0.7;">Icebreaker &middot; A1</div><div style="font-family:'Playfair Display',serif;font-size:52px;font-weight:700;color:#FFFFFF;line-height:1.05;text-align:center;">AI Reads the Room</div><div style="font-size:15px;font-weight:300;color:rgba(255,255,255,0.4);text-align:center;">Face detection · Live word cloud · Firebase</div><div style="padding:18px 28px;border:1px dashed rgba(255,255,255,0.1);border-radius:8px;background:rgba(255,255,255,0.02);"><div style="font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.2);text-align:center;">Content coming soon</div></div><button onclick="hubNavBack()" style="margin-top:4px;padding:9px 22px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;font-size:11px;font-weight:500;color:rgba(255,255,255,0.35);cursor:pointer;">&#8249; Back to Agenda</button></div></div>
+<div class="slide" id="slide-ice-a1" style="display:none;position:relative;width:100vw;height:100vh;background:#0B1F3A;overflow:hidden;font-family:'DM Sans',sans-serif;">
+<div style="position:absolute;inset:0;z-index:0;pointer-events:none;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(201,168,76,0.05) 1px,transparent 1px);background-size:40px 40px;"></div>
+  <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#3BC9A0,rgba(59,201,160,0.1));"></div>
+  <div style="position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(59,201,160,0.25),transparent);animation:slideScan 4s linear infinite;z-index:2;pointer-events:none;"></div>
+</div>
+<div style="position:relative;z-index:1;display:grid;grid-template-columns:1fr 400px;height:100%;gap:0;">
+
+  <!-- LEFT -->
+  <div style="padding:44px 52px 36px 72px;display:flex;flex-direction:column;justify-content:space-between;">
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <span style="font-size:9px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#3BC9A0;">Icebreaker - A1</span>
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3BC9A0;animation:dotPulse 1.4s ease-in-out infinite;"></span>
+        <span style="font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#3BC9A0;">LIVE ACTIVITY</span>
+      </div>
+      <div style="font-family:'Playfair Display',serif;font-size:46px;font-weight:700;color:#FFFFFF;line-height:1.0;margin-bottom:8px;">Artificial Intelligence<br><span style="color:#3BC9A0;font-style:italic;">Reads the Room</span></div>
+      <div style="font-size:13px;font-weight:300;color:rgba(255,255,255,0.4);letter-spacing:0.04em;">Real-time face detection on your device - no app - no data leaves your phone</div>
+    </div>
+
+    <!-- Steps -->
+    <div style="display:flex;flex-direction:column;gap:14px;flex:1;justify-content:center;padding:20px 0;">
+      <div style="display:flex;align-items:flex-start;gap:16px;">
+        <div style="width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(59,201,160,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;font-weight:600;color:#3BC9A0;font-family:'DM Mono',monospace;">1</div>
+        <div style="padding-top:4px;"><div style="font-size:14px;font-weight:500;color:rgba(255,255,255,0.9);margin-bottom:3px;">Scan the QR code with your phone</div><div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.4);">Opens in your mobile browser - no download required</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:16px;">
+        <div style="width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(59,201,160,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;font-weight:600;color:#3BC9A0;font-family:'DM Mono',monospace;">2</div>
+        <div style="padding-top:4px;"><div style="font-size:14px;font-weight:500;color:rgba(255,255,255,0.9);margin-bottom:3px;">Allow camera access when prompted</div><div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.4);">The AI model runs entirely on your device - nothing is transmitted</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:16px;">
+        <div style="width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(59,201,160,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;font-weight:600;color:#3BC9A0;font-family:'DM Mono',monospace;">3</div>
+        <div style="padding-top:4px;"><div style="font-size:14px;font-weight:500;color:rgba(255,255,255,0.9);margin-bottom:3px;">Watch the AI detect your face and emotion in real time</div><div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.4);">Bounding box, emotion label, confidence score - all computed locally by a neural network</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:16px;">
+        <div style="width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(59,201,160,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;font-weight:600;color:#3BC9A0;font-family:'DM Mono',monospace;">4</div>
+        <div style="padding-top:4px;"><div style="font-size:14px;font-weight:500;color:rgba(255,255,255,0.9);margin-bottom:3px;">Tap <strong style="color:#3BC9A0;">"Submit - I am [EMOTION]"</strong> to send your result</div><div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.4);">Your emotion appears on the big screen live - watch the cloud build</div></div>
+      </div>
+    </div>
+
+    <!-- Trainer note -->
+    <div style="border:1px solid rgba(59,201,160,0.2);border-left:3px solid #3BC9A0;border-radius:4px;padding:12px 16px;background:rgba(59,201,160,0.04);">
+      <div style="font-size:8px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(59,201,160,0.6);margin-bottom:5px;">Trainer note - the MCP moment</div>
+      <div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.5);line-height:1.6;">After everyone submits: <span style="color:rgba(255,255,255,0.8);font-weight:500;">"What just happened is the Model Context Protocol in miniature. Your phone made a request. An AI model processed it. The result was sent here. Request, Response, Render. That is how all AI agents communicate."</span></div>
+    </div>
+
+    <!-- Nav -->
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:10px;border-top:1px solid rgba(59,201,160,0.12);">
+      <button onclick="hubNavBack()" style="padding:7px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:5px;font-size:10px;font-weight:500;color:rgba(255,255,255,0.35);cursor:pointer;">&#8249; Agenda</button>
+      <span style="font-size:10px;color:rgba(255,255,255,0.2);">DigitAlchemy&#174; &middot; LUBM</span>
+      <button onclick="hubNav('p1-1a')" style="padding:7px 16px;background:rgba(59,201,160,0.08);border:1px solid rgba(59,201,160,0.2);border-radius:5px;font-size:10px;font-weight:500;color:#3BC9A0;cursor:pointer;">Phase 01 &#8250;</button>
+    </div>
+  </div>
+
+  <!-- RIGHT: QR + Word Cloud + Timer -->
+  <div style="border-left:1px solid rgba(59,201,160,0.12);background:rgba(255,255,255,0.02);padding:40px 32px 32px;display:flex;flex-direction:column;gap:18px;">
+
+    <!-- Scan label -->
+    <div style="font-size:9px;font-weight:600;letter-spacing:0.20em;text-transform:uppercase;color:#3BC9A0;display:flex;align-items:center;gap:8px;">Scan to join<div style="flex:1;height:1px;background:rgba(59,201,160,0.2);"></div></div>
+
+    <!-- QR code -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+      <div id="ice-qr-code" style="width:160px;height:160px;background:#FFFFFF;border-radius:8px;padding:10px;display:flex;align-items:center;justify-content:center;"></div>
+      <div style="font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.04em;">lubm-ai-workshop.vercel.app/icebreaker</div>
+    </div>
+
+    <!-- Word cloud section -->
+    <div style="flex:1;display:flex;flex-direction:column;gap:8px;min-height:0;">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:9px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.25);">Live Emotion Cloud</span>
+        <span id="ice-vote-count" style="font-family:'DM Mono',monospace;font-size:10px;color:#3BC9A0;">0 responses</span>
+      </div>
+      <div id="ice-cloud-canvas" style="flex:1;border:1px solid rgba(255,255,255,0.06);border-radius:8px;background:rgba(0,0,0,0.15);position:relative;overflow:hidden;min-height:160px;">
+        <div id="ice-cloud-empty" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
+          <div style="font-size:11px;font-weight:300;color:rgba(255,255,255,0.15);text-align:center;line-height:1.6;">Waiting for<br>first submission...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timer -->
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <span style="font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.25);">Time remaining</span>
+      <span id="ice-timer" style="font-family:'DM Mono',monospace;font-size:26px;font-weight:500;color:#3BC9A0;letter-spacing:0.08em;">05:00</span>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// Icebreaker slide logic - runs once when slide is first shown
+(function() {
+  var FB = 'https://lubm-workshop-default-rtdb.firebaseio.com';
+  var COLORS = {
+    'HAPPY':'#C9A84C','CURIOUS':'#3BC9A0','NERVOUS':'#E87040','EXCITED':'#7B9FE0',
+    'SURPRISED':'#A78BFA','SCEPTICAL':'#F472B6','NEUTRAL':'#8A9BB0','TENSE':'#FB923C',
+    'SAD':'#60A5FA','OVERWHELMED':'#34D399','FEARFUL':'#F87171','DISGUSTED':'#A3E635'
+  };
+  var wordCounts = {}, placedWords = {}, totalVotes = 0;
+  var timerStarted = false, timerInterval = null, timerSecs = 300;
+  var qrDone = false, pollingInterval = null;
+
+  function initIcebreaker() {
+    if (!qrDone && window.QRCode && document.getElementById('ice-qr-code')) {
+      var qrEl = document.getElementById('ice-qr-code');
+      qrEl.innerHTML = '';
+      new QRCode(qrEl, {text:'https://lubm-ai-workshop.vercel.app/icebreaker',width:140,height:140,colorDark:'#0B1F3A',colorLight:'#FFFFFF',correctLevel:QRCode.CorrectLevel.M});
+      qrDone = true;
+    }
+    if (!timerStarted) {
+      timerStarted = true;
+      timerInterval = setInterval(function() {
+        timerSecs--;
+        var m = Math.floor(timerSecs/60), s = timerSecs%60;
+        var el = document.getElementById('ice-timer');
+        if (el) {
+          el.textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+          if (timerSecs <= 60) el.style.color = '#C9A84C';
+          if (timerSecs <= 30) el.style.color = '#E87040';
+          if (timerSecs <= 0) { clearInterval(timerInterval); el.textContent = '00:00'; el.style.color = '#E84040'; }
+        }
+      }, 1000);
+    }
+    if (!pollingInterval) {
+      pollingInterval = setInterval(pollFirebase, 2500);
+      pollFirebase();
+    }
+  }
+
+  function updateCloud() {
+    var canvas = document.getElementById('ice-cloud-canvas');
+    var empty = document.getElementById('ice-cloud-empty');
+    var voteEl = document.getElementById('ice-vote-count');
+    if (!canvas) return;
+    if (totalVotes === 0) { if(empty) empty.style.display='flex'; return; }
+    if(empty) empty.style.display='none';
+    if(voteEl) voteEl.textContent = totalVotes + (totalVotes===1?' response':' responses');
+    var maxCount = Math.max.apply(null, Object.values(wordCounts).concat([1]));
+    var W = canvas.offsetWidth || 300, H = canvas.offsetHeight || 160;
+    Object.entries(wordCounts).forEach(function(entry) {
+      var word = entry[0], count = entry[1];
+      var fontSize = Math.round(14 + (count/maxCount)*36);
+      var color = COLORS[word] || '#C9A84C';
+      if (placedWords[word]) {
+        placedWords[word].style.fontSize = fontSize+'px';
+        placedWords[word].style.opacity = (0.45+(count/maxCount)*0.55).toFixed(2);
+        return;
+      }
+      var el = document.createElement('div');
+      el.style.cssText = 'position:absolute;font-family:Playfair Display,serif;font-weight:700;transform:translate(-50%,-50%);white-space:nowrap;cursor:default;';
+      el.textContent = word;
+      el.style.fontSize = fontSize+'px';
+      el.style.color = color;
+      el.style.opacity = (0.45+(count/maxCount)*0.55).toFixed(2);
+      el.style.left = (24+Math.random()*(W-48))+'px';
+      el.style.top = (20+Math.random()*(H-40))+'px';
+      canvas.appendChild(el);
+      placedWords[word] = el;
+    });
+  }
+
+  function pollFirebase() {
+    fetch(FB+'/icebreaker/emotions.json').then(function(r){return r.json();}).then(function(data){
+      if (!data) return;
+      var newCounts = {};
+      Object.values(data).forEach(function(entry) {
+        var e = (entry.emotion||'').toUpperCase().trim();
+        if (e) newCounts[e] = (newCounts[e]||0)+1;
+      });
+      var changed = false, newTotal = 0;
+      Object.entries(newCounts).forEach(function(en) { newTotal+=en[1]; if(wordCounts[en[0]]!==en[1]){wordCounts[en[0]]=en[1];changed=true;} });
+      if (changed||newTotal!==totalVotes) { totalVotes=newTotal; updateCloud(); }
+    }).catch(function(){});
+  }
+
+  // Watch for this slide becoming visible
+  var iceSlide = document.getElementById('slide-ice-a1');
+  if (iceSlide) {
+    var obs = new MutationObserver(function() {
+      if (iceSlide.style.display !== 'none') initIcebreaker();
+    });
+    obs.observe(iceSlide, {attributes:true, attributeFilter:['style']});
+    // Also init immediately if already visible
+    if (iceSlide.style.display !== 'none') initIcebreaker();
+  }
+})();
+</script>
+</div>
 <div class="slide" id="slide-p1-1a" style="display:none;position:relative;width:100vw;height:100vh;background:#0B1F3A;overflow:hidden;font-family:'DM Sans',sans-serif;">
 <div style="position:absolute;inset:0;z-index:0;pointer-events:none;"><div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(201,168,76,0.05) 1px,transparent 1px);background-size:40px 40px;"></div><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#C9A84C,rgba(201,168,76,0.1));"></div><div style="position:absolute;bottom:-80px;right:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(ellipse,rgba(29,158,117,0.07) 0%,transparent 70%);"></div></div>
 <div style="position:relative;z-index:1;display:grid;grid-template-columns:1fr 400px;height:100%;gap:0;">
