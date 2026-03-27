@@ -200,7 +200,7 @@
   .slide-1 .phase:nth-child(6) { animation: fadeUp 0.35s ease 0.86s both; }
   .slide-1 .phase:nth-child(7) { animation: fadeUp 0.35s ease 0.92s both; }
 
-  /* ââ Slide 3: Agenda ââ */
+  /* -- Slide 3: Agenda -- */
   .slide-3 {
     display: flex; flex-direction: column;
     padding: 40px 56px 24px 56px;
@@ -348,7 +348,7 @@
     letter-spacing: 0.08em;
   }
 
-  /* ââ Navigation bar ââ */
+  /* -- Navigation bar -- */
   .nav-bar {
     position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
     z-index: 100; display: flex; align-items: center; gap: 16px;
@@ -368,7 +368,7 @@
     min-width: 40px; text-align: center;
   }
 
-  /* ââ Slide 4: Icebreaker animations ââ */
+  /* -- Slide 4: Icebreaker animations -- */
   @keyframes slideScan {
     0% { top: 0; opacity: 0; }
     5% { opacity: 1; }
@@ -380,7 +380,7 @@
     50% { opacity: 0.3; }
   }
 
-  /* ââ Poll overlay panel ââ */
+  /* -- Poll overlay panel -- */
   .poll-trigger{position:fixed;bottom:20px;right:20px;z-index:90;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;transition:opacity 0.2s}
   .poll-trigger:hover{opacity:0.8}
   .poll-trigger-qr{width:56px;height:56px;background:var(--white);border-radius:6px;padding:4px;display:flex;align-items:center;justify-content:center;overflow:hidden}
@@ -425,7 +425,7 @@
 </head>
 <body>
 
-<!-- Splash entry screen â click unlocks Chrome audio MEI for entire session -->
+<!-- Splash entry screen - click unlocks Chrome audio MEI for entire session -->
 <div id="splash" style="
   position:fixed; inset:0; z-index:9999;
   background:#0B1F3A;
@@ -434,55 +434,9 @@
   gap:32px;
   font-family:'DM Sans',sans-serif;
 ">
-  <div style="position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:0.06;">
-  <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet">
-    <g transform="translate(200,150)" opacity="1">
-      <!-- Shield outline -->
-      <path d="M0,-90 L55,-65 L70,10 L0,70 L-70,10 L-55,-65 Z" fill="none" stroke="#C9A84C" stroke-width="3"/>
-      <!-- Inner shield detail -->
-      <path d="M0,-70 L42,-50 L54,8 L0,54 L-54,8 L-42,-50 Z" fill="none" stroke="#C9A84C" stroke-width="1.5"/>
-      <!-- LINCOLN text -->
-      <text x="0" y="-18" text-anchor="middle" font-family="serif" font-size="22" font-weight="700" letter-spacing="4" fill="#C9A84C">LINCOLN</text>
-      <!-- Divider line -->
-      <line x1="-40" y1="-8" x2="40" y2="-8" stroke="#C9A84C" stroke-width="1"/>
-      <!-- UNIVERSITY text -->
-      <text x="0" y="6" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="500" letter-spacing="2" fill="#C9A84C">UNIVERSITY OF</text>
-      <text x="0" y="17" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="500" letter-spacing="2" fill="#C9A84C">BUSINESS &amp; MANAGEMENT</text>
-      <!-- Keep Learning -->
-      <rect x="-36" y="24" width="72" height="14" fill="#C9A84C" opacity="0.3"/>
-      <text x="0" y="34" text-anchor="middle" font-family="sans-serif" font-size="7" font-weight="600" letter-spacing="1.5" fill="#0B1F3A">KEEP LEARNING</text>
-    </g>
-  </svg>
-</div>
-    <!-- subtle dot grid -->
-  <div style="
-    position:absolute; inset:0;
-    background-image:radial-gradient(circle, rgba(201,168,76,0.06) 1px, transparent 1px);
-    background-size:40px 40px;
-    pointer-events:none;
-  "></div>
-
-  <!-- gold top stripe -->
-  <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#C9A84C,rgba(201,168,76,0.1));"></div>
-
-  <!-- institution name -->
-  <div style="
-    font-size:11px; font-weight:500; letter-spacing:0.22em;
-    text-transform:uppercase; color:rgba(201,168,76,0.7);
-    position:relative; z-index:1;
-  ">Lincoln University of Business and Management</div>
-
-  <!-- main heading -->
-  <div style="position:relative;z-index:1;text-align:center;">
-    <div style="font-family:'Playfair Display',serif;font-size:52px;font-weight:700;color:#FFFFFF;line-height:1.1;margin-bottom:12px;">
-      Artificial Intelligence<br>Workshop
-    </div>
-    <div style="font-size:15px;font-weight:300;color:rgba(255,255,255,0.45);letter-spacing:0.06em;">
-      Full-Day Staff Development &nbsp;Â·&nbsp; 09:00 â 17:00
-    </div>
   </div>
 
-  <!-- enter button â this click unlocks audio for entire session -->
+  <!-- enter button - this click unlocks audio for entire session -->
   <button onclick="enterDeck()" style="
     position:relative; z-index:1;
     margin-top:16px;
@@ -511,46 +465,21 @@
     letter-spacing:0.12em; text-transform:uppercase;
     color:rgba(201,168,76,0.3);
     z-index:1;
-  ">DigitAlchemyÂ®</div>
+  ">DigitAlchemy®</div>
 
 </div>
 
 <div class="slide slide-1">
   <div class="bg">
-    <div class="dot-grid"></div><div style="position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:0.06;">
-  <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet">
-    <g transform="translate(200,150)" opacity="1">
-      <!-- Shield outline -->
-      <path d="M0,-90 L55,-65 L70,10 L0,70 L-70,10 L-55,-65 Z" fill="none" stroke="#C9A84C" stroke-width="3"/>
-      <!-- Inner shield detail -->
-      <path d="M0,-70 L42,-50 L54,8 L0,54 L-54,8 L-42,-50 Z" fill="none" stroke="#C9A84C" stroke-width="1.5"/>
-      <!-- LINCOLN text -->
-      <text x="0" y="-18" text-anchor="middle" font-family="serif" font-size="22" font-weight="700" letter-spacing="4" fill="#C9A84C">LINCOLN</text>
-      <!-- Divider line -->
-      <line x1="-40" y1="-8" x2="40" y2="-8" stroke="#C9A84C" stroke-width="1"/>
-      <!-- UNIVERSITY text -->
-      <text x="0" y="6" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="500" letter-spacing="2" fill="#C9A84C">UNIVERSITY OF</text>
-      <text x="0" y="17" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="500" letter-spacing="2" fill="#C9A84C">BUSINESS &amp; MANAGEMENT</text>
-      <!-- Keep Learning -->
-      <rect x="-36" y="24" width="72" height="14" fill="#C9A84C" opacity="0.3"/>
-      <text x="0" y="34" text-anchor="middle" font-family="sans-serif" font-size="7" font-weight="600" letter-spacing="1.5" fill="#0B1F3A">KEEP LEARNING</text>
-    </g>
-  </svg>
-</div>
-    <div class="arc"></div>
-    <div class="arc-2"></div>
-    <div class="right-bg"></div>
-    <div class="stripe"></div>
-    <div class="stripe-2"></div>
-  </div>
+    <div class="dot-grid"></div></div>
   <div class="left">
     <div class="institution">
       <span class="inst-name">Lincoln University of Business and Management</span>
-      <span class="inst-sub">Sharjah, United Arab Emirates &nbsp;Â·&nbsp; York-Validated MBA Programmes</span>
+      <span class="inst-sub">Sharjah, United Arab Emirates &nbsp;·&nbsp; York-Validated MBA Programmes</span>
     </div>
     <div class="rule"></div>
     <div class="main">
-      <div class="event-tag">Internal Staff Development &nbsp;Â·&nbsp; Full-Day Workshop</div>
+      <div class="event-tag">Internal Staff Development &nbsp;·&nbsp; Full-Day Workshop</div>
       <h1>Transform<br>with <span class="accent">Intelligence</span></h1>
       <p class="subtitle">
         Practical artificial intelligence<br>
@@ -566,9 +495,9 @@
     <div class="bottom">
       <div class="trainer-block">
         <span class="trainer-name">Kendall Wilson</span>
-        <span class="trainer-role">Digital Transformation Strategist &nbsp;Â·&nbsp; DigitAlchemyÂ®</span>
+        <span class="trainer-role">Digital Transformation Strategist &nbsp;·&nbsp; DigitAlchemy®</span>
       </div>
-      <div class="da-mark">DigitAlchemyÂ®<br>contact@digitalabbot.io</div>
+      <div class="da-mark">DigitAlchemy®<br>contact@digitalabbot.io</div>
     </div>
   </div>
   <div class="right">
@@ -576,37 +505,37 @@
     <div class="phase-list">
       <div class="phase p-ice">
         <span class="ph-num">00</span>
-        <div class="ph-body"><span class="ph-title">Icebreaker â Artificial Intelligence Bingo</span><span class="ph-time">09:00 â 09:30</span></div>
+        <div class="ph-body"><span class="ph-title">Icebreaker - Artificial Intelligence Bingo</span><span class="ph-time">09:00 - 09:30</span></div>
         <div class="ph-dot"></div>
       </div>
       <div class="phase p-1">
         <span class="ph-num">01</span>
-        <div class="ph-body"><span class="ph-title">Foundation + Prompt Engineering</span><span class="ph-time">09:30 â 10:30</span></div>
+        <div class="ph-body"><span class="ph-title">Foundation + Prompt Engineering</span><span class="ph-time">09:30 - 10:30</span></div>
         <div class="ph-dot"></div>
       </div>
       <div class="phase p-2">
         <span class="ph-num">02</span>
-        <div class="ph-body"><span class="ph-title">Department Deep-Dives</span><span class="ph-time">10:45 â 12:15</span></div>
+        <div class="ph-body"><span class="ph-title">Department Deep-Dives</span><span class="ph-time">10:45 - 12:15</span></div>
         <div class="ph-dot"></div>
       </div>
       <div class="phase p-3">
         <span class="ph-num">03</span>
-        <div class="ph-body"><span class="ph-title">Live Workflow Automation</span><span class="ph-time">13:15 â 14:45</span></div>
+        <div class="ph-body"><span class="ph-title">Live Workflow Automation</span><span class="ph-time">13:15 - 14:45</span></div>
         <div class="ph-dot"></div>
       </div>
       <div class="phase p-4">
         <span class="ph-num">04</span>
-        <div class="ph-body"><span class="ph-title">Responsible Artificial Intelligence + Policy</span><span class="ph-time">15:00 â 15:45</span></div>
+        <div class="ph-body"><span class="ph-title">Responsible Artificial Intelligence + Policy</span><span class="ph-time">15:00 - 15:45</span></div>
         <div class="ph-dot"></div>
       </div>
       <div class="phase p-5">
         <span class="ph-num">05</span>
-        <div class="ph-body"><span class="ph-title">Department Showcase</span><span class="ph-time">15:45 â 16:30</span></div>
+        <div class="ph-body"><span class="ph-title">Department Showcase</span><span class="ph-time">15:45 - 16:30</span></div>
         <div class="ph-dot"></div>
       </div>
       <div class="phase p-6">
         <span class="ph-num">06</span>
-        <div class="ph-body"><span class="ph-title">30-Day Action Plan + Close</span><span class="ph-time">16:30 â 17:00</span></div>
+        <div class="ph-body"><span class="ph-title">30-Day Action Plan + Close</span><span class="ph-time">16:30 - 17:00</span></div>
         <div class="ph-dot"></div>
       </div>
     </div>
@@ -634,10 +563,10 @@
 
   <!-- slide label -->
   <div style="position:absolute; top:32px; left:48px; z-index:10; font-family:'DM Sans',sans-serif; font-size:10px; font-weight:500; letter-spacing:0.20em; text-transform:uppercase; color:rgba(201,168,76,0.6);">
-    Slide 02 &nbsp;Â·&nbsp; Presenter
+    Slide 02 &nbsp;·&nbsp; Presenter
   </div>
 
-  <!-- MUTED BADGE â centre top, visible by default, hides when unmuted -->
+  <!-- MUTED BADGE - centre top, visible by default, hides when unmuted -->
   <div id="slide2-muted-badge" style="
     position:absolute; top:32px; left:50%; transform:translateX(-50%);
     z-index:10; display:flex; align-items:center; gap:8px;
@@ -652,7 +581,7 @@
       <line x1="23" y1="9" x2="17" y2="15"/>
       <line x1="17" y1="9" x2="23" y2="15"/>
     </svg>
-    Sound off &nbsp;Â·&nbsp; Click unmute to hear audio
+    Sound off &nbsp;·&nbsp; Click unmute to hear audio
   </div>
 
   <!-- CONTROLS BAR -->
@@ -742,25 +671,39 @@
 
 <!-- Slide 3: Agenda Hub -->
 <div class="slide slide-3" id="slide-3-hub" data-has-watermark="true" style="display:none;position:relative;width:100vw;height:100vh;background:#0B1F3A;overflow:hidden;font-family:'DM Sans',sans-serif;">
-<div style="position:absolute;inset:0;z-index:0;pointer-events:none;"><div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(201,168,76,0.05) 1px,transparent 1px);background-size:40px 40px;"></div><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#C9A84C,rgba(201,168,76,0.1));"></div><div style="position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:0.06;">
-  <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet">
-    <g transform="translate(200,150)" opacity="1">
-      <!-- Shield outline -->
-      <path d="M0,-90 L55,-65 L70,10 L0,70 L-70,10 L-55,-65 Z" fill="none" stroke="#C9A84C" stroke-width="3"/>
-      <!-- Inner shield detail -->
-      <path d="M0,-70 L42,-50 L54,8 L0,54 L-54,8 L-42,-50 Z" fill="none" stroke="#C9A84C" stroke-width="1.5"/>
-      <!-- LINCOLN text -->
-      <text x="0" y="-18" text-anchor="middle" font-family="serif" font-size="22" font-weight="700" letter-spacing="4" fill="#C9A84C">LINCOLN</text>
-      <!-- Divider line -->
-      <line x1="-40" y1="-8" x2="40" y2="-8" stroke="#C9A84C" stroke-width="1"/>
-      <!-- UNIVERSITY text -->
-      <text x="0" y="6" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="500" letter-spacing="2" fill="#C9A84C">UNIVERSITY OF</text>
-      <text x="0" y="17" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="500" letter-spacing="2" fill="#C9A84C">BUSINESS &amp; MANAGEMENT</text>
-      <!-- Keep Learning -->
-      <rect x="-36" y="24" width="72" height="14" fill="#C9A84C" opacity="0.3"/>
-      <text x="0" y="34" text-anchor="middle" font-family="sans-serif" font-size="7" font-weight="600" letter-spacing="1.5" fill="#0B1F3A">KEEP LEARNING</text>
-    </g>
-  </svg>
+<div style="position:absolute;inset:0;z-index:0;pointer-events:none;"><div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(201,168,76,0.05) 1px,transparent 1px);background-size:40px 40px;"></div><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#C9A84C,rgba(201,168,76,0.1));"></div><div style="position:absolute;right:5%;top:50%;transform:translateY(-50%);z-index:0;pointer-events:none;opacity:0.40;">
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="180" viewBox="0 0 220 180">
+  <!-- Shield body -->
+  <path d="M110 8 L190 38 L190 95 Q190 145 110 172 Q30 145 30 95 L30 38 Z" fill="#1B2A6B" stroke="#C8A84B" stroke-width="2.5"/>
+  <!-- Inner shield line -->
+  <path d="M110 20 L178 46 L178 95 Q178 138 110 160 Q42 138 42 95 L42 46 Z" fill="none" stroke="rgba(200,168,75,0.5)" stroke-width="1"/>
+  <!-- Open book icon in shield -->
+  <g transform="translate(110,80)">
+    <path d="M-28,-18 Q-14,-22 0,-18 Q14,-22 28,-18 L28,18 Q14,14 0,18 Q-14,14 -28,18 Z" fill="none" stroke="#C8A84B" stroke-width="2"/>
+    <line x1="0" y1="-18" x2="0" y2="18" stroke="#C8A84B" stroke-width="1.5"/>
+    <!-- Pages lines left -->
+    <line x1="-22" y1="-8" x2="-4" y2="-10" stroke="#C8A84B" stroke-width="1" opacity="0.7"/>
+    <line x1="-22" y1="0" x2="-4" y2="-2" stroke="#C8A84B" stroke-width="1" opacity="0.7"/>
+    <line x1="-22" y1="8" x2="-4" y2="6" stroke="#C8A84B" stroke-width="1" opacity="0.7"/>
+    <!-- Pages lines right -->
+    <line x1="22" y1="-8" x2="4" y2="-10" stroke="#C8A84B" stroke-width="1" opacity="0.7"/>
+    <line x1="22" y1="0" x2="4" y2="-2" stroke="#C8A84B" stroke-width="1" opacity="0.7"/>
+    <line x1="22" y1="8" x2="4" y2="6" stroke="#C8A84B" stroke-width="1" opacity="0.7"/>
+  </g>
+  <!-- Doves (simplified) -->
+  <path d="M72,52 Q78,44 86,48 Q82,54 76,56 Z" fill="#C8A84B" opacity="0.8"/>
+  <path d="M148,52 Q142,44 134,48 Q138,54 144,56 Z" fill="#C8A84B" opacity="0.8"/>
+  <!-- LINCOLN text -->
+  <text x="110" y="128" text-anchor="middle" font-family="Georgia,serif" font-size="15" font-weight="700" letter-spacing="3" fill="white">LINCOLN</text>
+  <!-- Divider -->
+  <rect x="50" y="133" width="120" height="1" fill="rgba(200,168,75,0.6)"/>
+  <!-- UNIVERSITY OF text -->
+  <text x="110" y="146" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" font-weight="400" letter-spacing="1.5" fill="rgba(255,255,255,0.85)">UNIVERSITY OF</text>
+  <text x="110" y="156" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" font-weight="400" letter-spacing="1.5" fill="rgba(255,255,255,0.85)">BUSINESS &amp; MANAGEMENT</text>
+  <!-- Keep Learning bar -->
+  <rect x="50" y="161" width="120" height="16" fill="#C8A84B" rx="2"/>
+  <text x="110" y="173" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" font-weight="600" letter-spacing="1.5" fill="#1B2A6B">KEEP LEARNING</text>
+</svg>
 </div></div>
 <div style="position:relative;z-index:1;display:flex;flex-direction:column;height:100%;padding:32px 48px 24px;">
 <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;flex-shrink:0;"><div><div style="font-size:10px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#C9A84C;margin-bottom:5px;">Slide 03 &middot; Programme</div><div style="font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:#FFFFFF;line-height:1.1;">Day at a Glance</div></div><div style="font-size:11px;font-weight:300;color:rgba(255,255,255,0.3);text-align:right;line-height:1.7;">Lincoln University of Business and Management &middot; Sharjah<br>09:00 &ndash; 17:00 &middot; Full Day</div></div>
@@ -792,7 +735,7 @@
 <div class="slide" id="slide-p4-4b" style="display:none;position:relative;width:100vw;height:100vh;background:#0B1F3A;overflow:hidden;font-family:'DM Sans',sans-serif;"><div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(201,168,76,0.05) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;"></div><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#E87040,transparent);"></div><div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:20px;padding:60px;"><div style="font-size:10px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#E87040;opacity:0.7;">Phase 04 &middot; 4B</div><div style="font-family:'Playfair Display',serif;font-size:52px;font-weight:700;color:#FFFFFF;line-height:1.05;text-align:center;">LUBM AI Policy Framework</div><div style="font-size:15px;font-weight:300;color:rgba(255,255,255,0.4);text-align:center;">What this means for your role · Governance · Guardrails</div><div style="padding:18px 28px;border:1px dashed rgba(255,255,255,0.1);border-radius:8px;background:rgba(255,255,255,0.02);"><div style="font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.2);text-align:center;">Content coming soon</div></div><button onclick="hubNavBack()" style="margin-top:4px;padding:9px 22px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;font-size:11px;font-weight:500;color:rgba(255,255,255,0.35);cursor:pointer;">&#8249; Back to Agenda</button></div></div>
 <div class="slide" id="slide-p5-5a" style="display:none;position:relative;width:100vw;height:100vh;background:#0B1F3A;overflow:hidden;font-family:'DM Sans',sans-serif;"><div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(201,168,76,0.05) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;"></div><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7B9FE0,transparent);"></div><div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:20px;padding:60px;"><div style="font-size:10px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#7B9FE0;opacity:0.7;">Phase 05 &middot; 5A</div><div style="font-family:'Playfair Display',serif;font-size:52px;font-weight:700;color:#FFFFFF;line-height:1.05;text-align:center;">Department Showcase</div><div style="font-size:15px;font-weight:300;color:rgba(255,255,255,0.4);text-align:center;">Each team presents their one AI win from today</div><div style="padding:18px 28px;border:1px dashed rgba(255,255,255,0.1);border-radius:8px;background:rgba(255,255,255,0.02);"><div style="font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.2);text-align:center;">Content coming soon</div></div><button onclick="hubNavBack()" style="margin-top:4px;padding:9px 22px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;font-size:11px;font-weight:500;color:rgba(255,255,255,0.35);cursor:pointer;">&#8249; Back to Agenda</button></div></div>
 <div class="slide" id="slide-p5-6a" style="display:none;position:relative;width:100vw;height:100vh;background:#0B1F3A;overflow:hidden;font-family:'DM Sans',sans-serif;"><div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(201,168,76,0.05) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;"></div><div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7B9FE0,transparent);"></div><div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:20px;padding:60px;"><div style="font-size:10px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#7B9FE0;opacity:0.7;">Phase 06 &middot; 6A</div><div style="font-family:'Playfair Display',serif;font-size:52px;font-weight:700;color:#FFFFFF;line-height:1.05;text-align:center;">30-Day Commitment Wall</div><div style="font-size:15px;font-weight:300;color:rgba(255,255,255,0.4);text-align:center;">Live Firebase submissions · What will you do from Monday?</div><div style="padding:18px 28px;border:1px dashed rgba(255,255,255,0.1);border-radius:8px;background:rgba(255,255,255,0.02);"><div style="font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.2);text-align:center;">Content coming soon</div></div><button onclick="hubNavBack()" style="margin-top:4px;padding:9px 22px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;font-size:11px;font-weight:500;color:rgba(255,255,255,0.35);cursor:pointer;">&#8249; Back to Agenda</button></div></div>
-<!-- Slide 4: Icebreaker â AR Face Detection -->
+<!-- Slide 4: Icebreaker - AR Face Detection -->
 <div class="slide" id="slide-4" style="display:none; position:relative; width:100vw; height:100vh; background:#0B1F3A; overflow:hidden; font-family:'DM Sans',sans-serif;">
 
   <div style="position:absolute;inset:0;z-index:0;overflow:hidden;">
@@ -809,35 +752,35 @@
 
       <div>
         <div style="font-size:10px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#C9A84C;margin-bottom:8px;">
-          Slide 04 &nbsp;Â·&nbsp; Icebreaker &nbsp;Â·&nbsp;
+          Slide 04 &nbsp;·&nbsp; Icebreaker &nbsp;·&nbsp;
           <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#1D9E75;animation:dotPulse 1.4s ease-in-out infinite;vertical-align:middle;margin-right:4px;"></span>Live Activity
         </div>
         <div style="font-family:'Playfair Display',serif;font-size:40px;font-weight:700;color:#FFFFFF;line-height:1;margin-bottom:8px;">Artificial Intelligence<br>Reads the Room</div>
-        <div style="font-size:14px;font-weight:300;color:rgba(255,255,255,0.45);letter-spacing:0.04em;">Real-time face detection on your own device &nbsp;Â·&nbsp; No app &nbsp;Â·&nbsp; No data leaves your phone</div>
+        <div style="font-size:14px;font-weight:300;color:rgba(255,255,255,0.45);letter-spacing:0.04em;">Real-time face detection on your own device &nbsp;·&nbsp; No app &nbsp;·&nbsp; No data leaves your phone</div>
       </div>
 
       <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;padding:28px 0;">
         <div style="display:flex;align-items:flex-start;gap:16px;">
           <div style="width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(201,168,76,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:500;color:#C9A84C;font-family:'DM Mono',monospace;">1</div>
-          <div style="padding-top:4px;"><div style="font-size:14px;font-weight:500;color:rgba(255,255,255,0.85);margin-bottom:3px;">Scan the QR code with your phone</div><div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.35);">Opens in your mobile browser instantly â no download required</div></div>
+          <div style="padding-top:4px;"><div style="font-size:14px;font-weight:500;color:rgba(255,255,255,0.85);margin-bottom:3px;">Scan the QR code with your phone</div><div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.35);">Opens in your mobile browser instantly - no download required</div></div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:16px;">
           <div style="width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(201,168,76,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:500;color:#C9A84C;font-family:'DM Mono',monospace;">2</div>
-          <div style="padding-top:4px;"><div style="font-size:14px;font-weight:500;color:rgba(255,255,255,0.85);margin-bottom:3px;">Allow camera access when prompted</div><div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.35);">The Artificial Intelligence model runs entirely on your device â nothing is transmitted</div></div>
+          <div style="padding-top:4px;"><div style="font-size:14px;font-weight:500;color:rgba(255,255,255,0.85);margin-bottom:3px;">Allow camera access when prompted</div><div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.35);">The Artificial Intelligence model runs entirely on your device - nothing is transmitted</div></div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:16px;">
           <div style="width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(201,168,76,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:500;color:#C9A84C;font-family:'DM Mono',monospace;">3</div>
-          <div style="padding-top:4px;"><div style="font-size:14px;font-weight:500;color:rgba(255,255,255,0.85);margin-bottom:3px;">Watch the Artificial Intelligence detect your face in real time</div><div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.35);">Bounding box, emotion label, confidence score â all computed locally by a neural network</div></div>
+          <div style="padding-top:4px;"><div style="font-size:14px;font-weight:500;color:rgba(255,255,255,0.85);margin-bottom:3px;">Watch the Artificial Intelligence detect your face in real time</div><div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.35);">Bounding box, emotion label, confidence score - all computed locally by a neural network</div></div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:16px;">
           <div style="width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(201,168,76,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:500;color:#C9A84C;font-family:'DM Mono',monospace;">4</div>
-          <div style="padding-top:4px;"><div style="font-size:14px;font-weight:500;color:rgba(255,255,255,0.85);margin-bottom:3px;">Tap Submit â the AI decides your emotion</div><div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.35);">The AI reads your face and submits automatically â you just confirm</div></div>
+          <div style="padding-top:4px;"><div style="font-size:14px;font-weight:500;color:rgba(255,255,255,0.85);margin-bottom:3px;">Tap Submit - the AI decides your emotion</div><div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.35);">The AI reads your face and submits automatically - you just confirm</div></div>
         </div>
       </div>
 
       <div style="border:1px solid rgba(201,168,76,0.2);border-left:3px solid #C9A84C;border-radius:4px;padding:14px 16px;background:rgba(201,168,76,0.04);">
-        <div style="font-size:9px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#C9A84C;margin-bottom:6px;font-family:'DM Mono',monospace;">Trainer note â the MCP moment</div>
-        <div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.5);line-height:1.6;">After everyone scans: <span style="color:rgba(255,255,255,0.75);font-weight:500;">"What just happened is the Model Context Protocol in miniature. Request â Response â Render. Your phone asked an AI model for a capability. The model returned structured data. The interface rendered it. That is MCP."</span></div>
+        <div style="font-size:9px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#C9A84C;margin-bottom:6px;font-family:'DM Mono',monospace;">Trainer note - the MCP moment</div>
+        <div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.5);line-height:1.6;">After everyone scans: <span style="color:rgba(255,255,255,0.75);font-weight:500;">"What just happened is the Model Context Protocol in miniature. Request - Response - Render. Your phone asked an AI model for a capability. The model returned structured data. The interface rendered it. That is MCP."</span></div>
       </div>
 
     </div>
@@ -876,7 +819,7 @@
     </div>
   </div>
 
-  <div style="position:absolute;bottom:24px;left:72px;font-size:10px;font-weight:300;color:rgba(255,255,255,0.18);letter-spacing:0.05em;z-index:1;">DigitAlchemyÂ® Â· Lincoln University of Business and Management Â· Sharjah</div>
+  <div style="position:absolute;bottom:24px;left:72px;font-size:10px;font-weight:300;color:rgba(255,255,255,0.18);letter-spacing:0.05em;z-index:1;">DigitAlchemy® · Lincoln University of Business and Management · Sharjah</div>
 </div>
 
 <!-- Navigation bar -->
@@ -910,7 +853,7 @@
   });
 })();
 
-// ââ SLIDE 2 VIDEO CONTROLS ââââââââââââââââââââââââââââââââââââââ
+// -- SLIDE 2 VIDEO CONTROLS --------------------------------------
 function slide2Init() {
   const v = document.getElementById('slide2-video');
   if (!v) return;
@@ -967,7 +910,7 @@ function slide2ToggleMute() {
   if (!v) return;
 
   if (v.muted) {
-    // Unmuting â must call play() in the same user gesture to unlock audio
+    // Unmuting - must call play() in the same user gesture to unlock audio
     v.muted = false;
     v.volume = 1.0;
     const playPromise = v.play();
@@ -976,7 +919,7 @@ function slide2ToggleMute() {
         // Playback started with sound
         slide2UpdateMuteUI(false);
       }).catch((err) => {
-        // Browser still blocked â fall back to muted
+        // Browser still blocked - fall back to muted
         console.warn('Audio unlock failed:', err);
         v.muted = true;
         slide2UpdateMuteUI(true);
@@ -1026,7 +969,7 @@ function slide2ToggleFullscreen() {
 // initialise when DOM is ready
 document.addEventListener('DOMContentLoaded', slide2Init);
 
-// ââ SLIDE 4 QR + TIMER ââââââââââââââââââââââââââââââââââ
+// -- SLIDE 4 QR + TIMER ----------------------------------
 (function() {
   function initSlide4() {
     // QR code
@@ -1038,7 +981,7 @@ document.addEventListener('DOMContentLoaded', slide2Init);
         correctLevel: QRCode.CorrectLevel.H
       });
     }
-    // Timer â only starts when slide 4 becomes visible
+    // Timer - only starts when slide 4 becomes visible
     let slide4Seconds = 300;
     let slide4Interval = null;
     const timerEl = document.getElementById('slide4-timer');
@@ -1072,7 +1015,7 @@ document.addEventListener('DOMContentLoaded', slide2Init);
   }
 })();
 
-// ââ SLIDE 4 FIREBASE WORD CLOUD ââââââââââââââââââââââââââ
+// -- SLIDE 4 FIREBASE WORD CLOUD --------------------------
 (function() {
   const FIREBASE_URL = 'https://lubm-workshop-default-rtdb.firebaseio.com';
   const wordCounts = {};
@@ -1194,7 +1137,7 @@ function enterDeck() {
   </div>
   <div class="poll-stats">
     <div class="pp-stat"><span class="pp-stat-n" id="ppTotal">0</span><span class="pp-stat-l">Responses</span></div>
-    <div class="pp-stat"><span class="pp-stat-n" id="ppAvg">â</span><span class="pp-stat-l">Average</span></div>
+    <div class="pp-stat"><span class="pp-stat-n" id="ppAvg">-</span><span class="pp-stat-l">Average</span></div>
   </div>
   <div class="poll-chart">
     <div class="pp-bar-row"><span class="pp-bar-score pp-b5t">5</span><div class="pp-bar-track"><div class="pp-bar-fill pp-b5" id="ppBar5" style="width:0%"><span class="pp-bar-lbl">Got it</span></div></div><span class="pp-bar-count" id="ppCnt5">0</span></div>
@@ -1206,29 +1149,29 @@ function enterDeck() {
   <div class="poll-controls">
     <div class="pp-ctrl-lbl">Phase</div>
     <select class="pp-select" id="ppPhaseSelect">
-      <option value="icebreaker" data-topic="Icebreaker" data-q="How comfortable are you with Artificial Intelligence right now?">00 â Icebreaker</option>
-      <option value="phase1" data-topic="Phase 01 â Foundation" data-q="How confident are you with prompt engineering basics?">01 â Foundation + Prompt Engineering</option>
-      <option value="phase2-academics" data-topic="Phase 02 â Academics" data-q="How confident are you applying Artificial Intelligence to your academic workflows?">02 â Academics Deep-Dive</option>
-      <option value="phase2-digital" data-topic="Phase 02 â Digital Media" data-q="How confident are you using Artificial Intelligence in your content pipeline?">02 â Digital Media Deep-Dive</option>
-      <option value="phase2-events" data-topic="Phase 02 â Events" data-q="How confident are you using Artificial Intelligence for event planning?">02 â Events Deep-Dive</option>
-      <option value="phase2-finance" data-topic="Phase 02 â Finance" data-q="How confident are you using Artificial Intelligence for financial workflows?">02 â Finance Deep-Dive</option>
-      <option value="phase2-hr" data-topic="Phase 02 â HR" data-q="How confident are you using Artificial Intelligence for HR processes?">02 â HR Deep-Dive</option>
-      <option value="phase2-marketing" data-topic="Phase 02 â Marketing" data-q="How confident are you using Artificial Intelligence for marketing and CRM?">02 â Marketing Deep-Dive</option>
-      <option value="phase3" data-topic="Phase 03 â Automation" data-q="How confident are you building automated workflows?">03 â Live Workflow Automation</option>
-      <option value="phase4" data-topic="Phase 04 â Responsible AI" data-q="How confident are you with responsible Artificial Intelligence practices?">04 â Responsible Artificial Intelligence</option>
-      <option value="phase5" data-topic="Phase 05 â Showcase" data-q="How confident are you presenting your department's Artificial Intelligence use case?">05 â Department Showcase</option>
-      <option value="phase6" data-topic="Phase 06 â Action Plan" data-q="How confident are you creating a 30-day Artificial Intelligence action plan?">06 â 30-Day Action Plan</option>
+      <option value="icebreaker" data-topic="Icebreaker" data-q="How comfortable are you with Artificial Intelligence right now?">00 - Icebreaker</option>
+      <option value="phase1" data-topic="Phase 01 - Foundation" data-q="How confident are you with prompt engineering basics?">01 - Foundation + Prompt Engineering</option>
+      <option value="phase2-academics" data-topic="Phase 02 - Academics" data-q="How confident are you applying Artificial Intelligence to your academic workflows?">02 - Academics Deep-Dive</option>
+      <option value="phase2-digital" data-topic="Phase 02 - Digital Media" data-q="How confident are you using Artificial Intelligence in your content pipeline?">02 - Digital Media Deep-Dive</option>
+      <option value="phase2-events" data-topic="Phase 02 - Events" data-q="How confident are you using Artificial Intelligence for event planning?">02 - Events Deep-Dive</option>
+      <option value="phase2-finance" data-topic="Phase 02 - Finance" data-q="How confident are you using Artificial Intelligence for financial workflows?">02 - Finance Deep-Dive</option>
+      <option value="phase2-hr" data-topic="Phase 02 - HR" data-q="How confident are you using Artificial Intelligence for HR processes?">02 - HR Deep-Dive</option>
+      <option value="phase2-marketing" data-topic="Phase 02 - Marketing" data-q="How confident are you using Artificial Intelligence for marketing and CRM?">02 - Marketing Deep-Dive</option>
+      <option value="phase3" data-topic="Phase 03 - Automation" data-q="How confident are you building automated workflows?">03 - Live Workflow Automation</option>
+      <option value="phase4" data-topic="Phase 04 - Responsible AI" data-q="How confident are you with responsible Artificial Intelligence practices?">04 - Responsible Artificial Intelligence</option>
+      <option value="phase5" data-topic="Phase 05 - Showcase" data-q="How confident are you presenting your department's Artificial Intelligence use case?">05 - Department Showcase</option>
+      <option value="phase6" data-topic="Phase 06 - Action Plan" data-q="How confident are you creating a 30-day Artificial Intelligence action plan?">06 - 30-Day Action Plan</option>
     </select>
     <div class="pp-btn-row">
       <button class="pp-btn pp-btn-launch" onclick="ppLaunch()">Launch Poll</button>
       <button class="pp-btn pp-btn-reset" onclick="ppReset()">Reset</button>
     </div>
-    <div class="pp-hint">Press P to toggle panel Â· Esc to close</div>
+    <div class="pp-hint">Press P to toggle panel · Esc to close</div>
   </div>
 </div>
 
 <script>
-// ââ POLL PANEL SYSTEM ââââââââââââââââââââââââââââââââââ
+// -- POLL PANEL SYSTEM ----------------------------------
 (function(){
   const FB = 'https://lubm-workshop-default-rtdb.firebaseio.com';
   let ppOpen = false;
@@ -1297,7 +1240,7 @@ function enterDeck() {
     ppResetBars();
     document.getElementById('ppTopic').textContent = 'Select a phase below';
     document.getElementById('ppTotal').textContent = '0';
-    document.getElementById('ppAvg').textContent = 'â';
+    document.getElementById('ppAvg').textContent = '-';
   };
 
   function ppResetBars() {
@@ -1308,7 +1251,7 @@ function enterDeck() {
       if (cnt) cnt.textContent = '0';
     }
     document.getElementById('ppTotal').textContent = '0';
-    document.getElementById('ppAvg').textContent = 'â';
+    document.getElementById('ppAvg').textContent = '-';
   }
 
   async function ppPollResponses() {
@@ -1338,7 +1281,7 @@ function enterDeck() {
         if (cnt) cnt.textContent = counts[i];
       }
       document.getElementById('ppTotal').textContent = total;
-      document.getElementById('ppAvg').textContent = total > 0 ? (sum / total).toFixed(1) : 'â';
+      document.getElementById('ppAvg').textContent = total > 0 ? (sum / total).toFixed(1) : '-';
     } catch(e) {}
   }
 
