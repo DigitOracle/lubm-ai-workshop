@@ -23,6 +23,7 @@
     { "src": "/assets/(.*)", "dest": "/assets/$1" },
     { "src": "/icebreaker", "dest": "/icebreaker.html" },
     { "src": "/poll", "dest": "/poll.html" },
+    { "src": "/bingo", "dest": "/bingo.html" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
